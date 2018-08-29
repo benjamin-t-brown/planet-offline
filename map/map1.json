@@ -1410,7 +1410,7 @@
                 {
                  "height":32,
                  "id":181,
-                 "name":"pause12",
+                 "name":"pause61",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -2148,6 +2148,18 @@
                  "width":32,
                  "x":400,
                  "y":4416
+                }, 
+                {
+                 "gid":1,
+                 "height":32,
+                 "id":261,
+                 "name":"text,Arrows to move.",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":325,
+                 "y":25376
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2155,7 +2167,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":261,
+ "nextobjectid":262,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",
@@ -2163,7 +2175,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"./triggers.tsx"
+         "source":"..\/icomic2\/tilesets\/triggers.tsx"
         }],
  "tilewidth":25,
  "type":"map",

@@ -9,6 +9,7 @@ let game;
 let dh = display.height;
 let dw = display.width;
 let drawText = display.drawText;
+let pause_name = '';
 
 // terrain scroll speed
 let TSS = 0.9;
@@ -579,6 +580,9 @@ class GroundCache extends Ground {
 			game.addPowerup( '2x', this.x, this.y, 0, 1 );
 		}
 		game.addPoints( 100 );
+		if( pause_name === 61 ) {
+			game.go( 1 );
+		}
 	}
 }
 
@@ -598,6 +602,7 @@ class GameControl extends Ground {
 		if( this.isVisible() ) {
 			this.remv = true;
 			if( this.pause_seconds ) { // pause control
+				pause_name = this.pause_seconds;
 				game.tss = 0;
 				game.setCB( () => {
 					game.tss = TSS;
@@ -859,6 +864,9 @@ class Harpoon extends Actor {
 				game.addText( 'Upload success!', '#5E5' );
 				this.plug.is_dead = true;
 				game.addPoints( 5000 );
+				if( pause_name === 61 ) {
+					game.go( 0 );
+				}
 			}
 			this.explode();
 			return;
@@ -1029,6 +1037,7 @@ game = {
 		display.playSound( 'lvlstart' );
 		game.loading = true;
 		setTimeout( () => {
+			pause_name = '';
 			game.loading = false;
 			game.started = true;
 			game.paused = false;
@@ -1280,6 +1289,12 @@ game = {
 	},
 	addPoints( p ) {
 		game.score += p * game.smult;
+	},
+	go( i ) {
+		if( ( this.i === 1 && i === 0 ) || ( this.i === 0 && i === 1 ) ) {
+			game.tss = TSS;
+		}
+		this.i = i;
 	},
 	createObjects() {
 		game.level_frame = 0;
