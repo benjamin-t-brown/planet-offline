@@ -1,3 +1,64 @@
+# Planet: Offline
+
+This is an entry for the js13k 2018 competition.  Theme is 'offline'.
+
+## Description
+
+Rogue AI has infected the planet!  And worse, it has taken over all defense systems and shut down the planetary network!  We cannot access the data we need in order to stop it.  It is a very dangerous mission, but we need you to fly across the planet and manually uplink with our ground databanks in the hopes that we can shut down the AI once and for all.  The more uplinks you complete, the better off we'll be.
+
+## Game
+
+Game can be found at [benjamin-t-brown.github.io/planet-offline/](https://benjamin-t-brown.github.io/planet-offline/)
+
+### Prerequisites
+
+The game does not require a build step to edit code, but it does to minify/zip and create the final entry.
+
+Nodejs (v9+), npm, zip.  Should work on Windows or Linux.  Original dev was mostly on Windows.
+
+Spawns are edited using [tiled](https://www.mapeditor.org/) map editor.
+
+### Dev Environment Setup
+
+Install dependencies with npm.
+
+```
+npm install
+```
+
+Build project (including minification and original zipping):
+
+```
+# operates in dist/* directory: erases and rewrites concat.js, main.js, index.html, main.zip
+npm run build
+```
+
+Run advzip for greater zip compression.  (Not included in build for operating system compatibility reasons)
+
+```
+advzip -z4 dist/main.zip
+```
+
+If level spawns are edited and exported as map/map1.json, run the included map building script to generate the 'levels.js' file.
+
+```
+node build-map.js
+```
+
+## Built With
+
+* [jsfxr (npm version)](https://www.npmjs.com/package/jsfxr) - for sound.
+* [tiled](https://www.mapeditor.org/) - for editing spawns.
+
+## Acknowledgments
+
+* Thank goodness for the js13k [resources](https://js13kgames.github.io/resources/) page, it is very useful.
+* The idea for this game comes from an old Ambrosia Software game for Mac called Deimos Rising [(example video)](https://www.youtube.com/watch?v=_dPjpHjmcB8).
+
+## Original Notes
+
+These were my original notes.  I didn't fit everything in, but I'm pleased with the end result.
+
 * Gameplay Rules *
 
 The goal is to complete the game (primary), get max score (secondary).  It should be fairly difficult to complete the game, but fairly easy to finish the first level, however it should be very hard to get max score.

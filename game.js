@@ -387,16 +387,16 @@ class Player extends Actor {
 			y: hpy,
 			w: hpw,
 			h: hph,
-			color: 'red',
-			outline: true
+			c: 'red',
+			outline: 1
 		} );
 		display.rect( {
 			x: chpx,
 			y: hpy,
 			w: chpw,
 			h: hph,
-			color: 'blue',
-			outline: true
+			c: 'blue',
+			outline: 1
 		});
 		let chpct = Math.round( this.hp * 100 / this.max_hp ) + '%';
 		drawText( chpct, hpx - chpct.length * 6.5, hpy + 2, { size: 24, color: 'white' } );

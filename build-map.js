@@ -149,12 +149,6 @@ res = res.filter( ( r ) => {
 	return arr.join( ',' );
 } ).join( '|' );
 
-// const out = `( function() {
-// 'use strict';
-// window.app.level = ${JSON.stringify( res, null, true )};
-// } )();
-// `;
-
 const out = `( function() {
 window.app.level = "${res}";
 } )();
