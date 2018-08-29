@@ -16,7 +16,7 @@ The game does not require a build step to edit code, but it does to minify/zip a
 
 Nodejs (v9+), npm, zip.  Should work on Windows or Linux.  Original dev was mostly on Windows.
 
-Spawns are edited using [tiled](https://www.mapeditor.org/) map editor.
+Spawns are edited using [Tiled](https://www.mapeditor.org/) map editor.
 
 ### Dev Environment Setup
 
@@ -48,7 +48,7 @@ node build-map.js
 ## Built With
 
 * [jsfxr (npm version)](https://www.npmjs.com/package/jsfxr) - for sound.
-* [tiled](https://www.mapeditor.org/) - for editing spawns.
+* [Tiled](https://www.mapeditor.org/) - for editing spawns.
 
 ## Acknowledgments
 

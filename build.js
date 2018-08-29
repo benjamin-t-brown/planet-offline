@@ -51,7 +51,7 @@ addEventListener('load',()=>{app.display.init('c',app.game.init)})
 		cb();
 	},
 	'clean': async function( cb ) {
-		const cmd = `rm -f dist/main.js dist/concat.js dist/main.zip`;
+		const cmd = `rm -f dist/index.html dist/main.js dist/concat.js dist/main.zip`;
 		return _execute( cmd ).then( cb || (function(){})() );
 	}
 };
