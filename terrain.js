@@ -268,6 +268,7 @@ function gen( height, width ){
 }
 
 terrain.set = function() {
+	seed = 123456;
 	let n_tiles_y = 800;
 	let n_tiles_x = 32;
 	let map = gen( n_tiles_y, n_tiles_x );
