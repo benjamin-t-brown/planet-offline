@@ -1082,7 +1082,7 @@ game = {
 		}
 		game.fade( false );
 		if( game.score > game.high_score ) {
-			display.playSound( 'beaconupload' );
+			display.playSound( 'upl' );
 			game.high_score = game.score;
 			ls && ls.setItem( 'score', game.score );
 			game.hs = true;
