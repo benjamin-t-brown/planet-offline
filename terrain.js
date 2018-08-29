@@ -63,12 +63,12 @@ let tiles = {
 		fg: [ '#FFF' ],
 		bg: [ '#000' ]
 	},
-	trees: {
+	tr: {
 		ch: ' ',
 		fg: [ '#373', '#363' ],
 		bg: [ '#031', '#040', '#121' ]
 	},
-	grass: {
+	gr: {
 		ch: ' ',
 		fg: [ '#3A3', '#5D5' ],
 		bg: [ '#464', '#252', '#151' ]
@@ -88,7 +88,7 @@ let tiles = {
 		fg: [ '#98A' ],
 		bg: [ '#546', '#557' ]
 	},
-	water: {
+	wtr: {
 		ch: '~ ',
 		fg: [ '#3FF', '#4FF' ],
 		bg: [ '#005', '#004' ]
@@ -108,12 +108,12 @@ let tiles = {
 		fg: [ '#F82', '#FA3' ],
 		bg: [ '#611', '#511' ]
 	},
-	lavashore: {
+	lshore: {
 		ch: '  _.',
 		fg: [ '#CB8' ],
 		bg: [ '#755', '#855' ]
 	},
-	wall: {
+	w: {
 		ch: '#@',
 		fg: [ '#111', '#222' ],
 		bg: [ '#622', '#722', '#822' ]
@@ -189,12 +189,12 @@ function lake( ix, iy, a, b, map ) {
 	outline( ix, iy, a, b, map );
 }
 
-function wall( y, map ) {
+function w( y, map ) {
 	let si = to1d( 0, y, 32 );
 	for( let i = 0; i < 32; i++ ) {
-		map[ i + si ] = createTile( 'wall', i, y );
-		map[ i - 32 + si ] = createTile( 'wall', i, y - 1 );
-		map[ i + 32 + si ] = createTile( 'wall', i, y + 1 );
+		map[ i + si ] = createTile( 'w', i, y );
+		map[ i - 32 + si ] = createTile( 'w', i, y - 1 );
+		map[ i + 32 + si ] = createTile( 'w', i, y + 1 );
 	}
 }
 
@@ -207,12 +207,12 @@ function gen( height, width ){
 	}
 	for( let y = 0; y < 266; y++ ) {
 		for( let x = 0; x < width; x++ ) {
-			map[ to1d( x, y, 32 ) ] = createTile( rand() > 0.5 ? 'trees' : 'grass', x, y );
+			map[ to1d( x, y, 32 ) ] = createTile( rand() > 0.5 ? 'tr' : 'gr', x, y );
 		}
 	}
 	for( let y = 266; y < 533; y++ ) {
 		for( let x = 0; x < width; x++ ) {
-			map[ to1d( x, y, 32 ) ] = createTile( 'trees', x, y );
+			map[ to1d( x, y, 32 ) ] = createTile( 'tr', x, y );
 		}
 	}
 	for( let y = 533; y < 800; y++ ) {
@@ -233,17 +233,17 @@ function gen( height, width ){
 	for( let i = 0; i < 20; i++ ) {
 		let x = norm( rand(), 0, 1, 0, 31 );
 		let y = norm( rand(), 0, 1, 50, 400 );
-		lake( x, y, 'water', 'shore', map );
+		lake( x, y, 'wtr', 'shore', map );
 	}
 	for( let i = 0; i < 10; i++ ) {
 		let x = norm( rand(), 0, 1, 0, 31 );
 		let y = norm( rand(), 0, 1, 50, 400 );
-		clump( x, y, [ 'trees' ], map );
+		clump( x, y, [ 'tr' ], map );
 	}
 	for( let i = 0; i < 10; i++ ) {
 		let x = norm( rand(), 0, 1, 0, 5 );
 		let y = norm( rand(), 0, 1, 0, 266 );
-		clump( x, y, [ 'grass' ], map );
+		clump( x, y, [ 'gr' ], map );
 	}
 	for( let i = 0; i < 40; i++ ) {
 		let x = norm( rand(), 0, 1, 0, 20 );
@@ -258,11 +258,11 @@ function gen( height, width ){
 	for( let i = 0; i < 30; i++ ) {
 		let x = norm( rand(), 0, 1, 0, 25 );
 		let y = norm( rand(), 0, 1, 566, 770 );
-		lake( x, y, 'lava', 'lavashore', map );
+		lake( x, y, 'lava', 'lshore', map );
 	}
-	wall( 0, map );
-	wall( 276, map );
-	wall( 533, map );
+	w( 0, map );
+	w( 276, map );
+	w( 533, map );
 
 	return map;
 }
@@ -294,7 +294,7 @@ function drawTile( tile, canvas ) {
 	let ty = canvas.height - tile_height - tile.y * tile_height + tile_height / 2;
 	display.ctx.save();
 	display.rect( { x: tx, y: ty, w: tile_width, h: tile_height, color: tile.bg } );
-	if( tile.type === 'grass' || tile.type === 'trees' || tile.type.indexOf( 'rock' ) > -1 ) {
+	if( tile.type === 'gr' || tile.type === 'tr' || tile.type.indexOf( 'rock' ) > -1 ) {
 		let nrects = 1 + Math.floor( rand() * 5 );
 		for( let i = 0; i < nrects; i++ ) {
 			let x = tx + f( rand() * tile_width );

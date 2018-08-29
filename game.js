@@ -9,6 +9,7 @@ let game;
 let dh = display.height;
 let dw = display.width;
 let drawText = display.drawText;
+let playSound = display.playSound;
 let pause_name = '';
 
 // terrain scroll speed
@@ -88,7 +89,7 @@ class Actor {
 	}
 
 	turn( direction ) {
-		if( direction === 'left' ) {
+		if( direction === 'l' ) {
 			this.ax = -this.max_ax;
 		} else {
 			this.ax = this.max_ax;
@@ -100,15 +101,15 @@ class Actor {
 
 		if ( this.hed <= h ) {
 			if ( Math.abs( this.hed - h ) < 180 ) {
-				this.turn( 'right' );
+				this.turn( 'r' );
 			} else {
-				this.turn( 'left' );
+				this.turn( 'l' );
 			}
 		} else {
 			if ( Math.abs( this.hed - h ) < 180 ) {
-				this.turn( 'left' );
+				this.turn( 'l' );
 			} else {
-				this.turn( 'right' );
+				this.turn( 'r' );
 			}
 		}
 	}
@@ -182,7 +183,7 @@ class Actor {
 			b.y = this.y + y;
 			game.actors.push( b );
 			game.addPar( 'flash', b.x, b.y ).hed = this.hed;
-			display.playSound( 'bullet' );
+			playSound( 'bullet' );
 		};
 
 		for( let i = 0; i < n; i++ ) {
@@ -285,6 +286,7 @@ class Player extends Actor {
 					}
 				}
 			}
+			game.score -= 10;
 		}
 	}
 	bomb() {
@@ -294,20 +296,21 @@ class Player extends Actor {
 				let b = new game.Bomb( 1, this.x, this.y, this.target_y );
 				this.bombs.push( b );
 			}
+			game.score -= 50;
 		}
 	}
 	harpoon() {
 		if( !this.uplink ) {
 			let h = new game.Harpoon( 1, this.x, this.y );
 			this.uplink = h;
-			display.playSound( 'harpoon' );
+			playSound( 'har' );
 			game.actors.push( h );
+			game.score -= 100;
 		}
 	}
 	explode() {
-		//super.explode();
 		if( !game.ncontrol ) {
-			display.playSound( 'lvlfail' );
+			playSound( 'lvlf' );
 			game.end();
 		}
 	}
@@ -363,7 +366,7 @@ class Player extends Actor {
 		if( this.bombs.length ) {
 			if( this.bomb_frame <= 0 ) {
 				this.bomb_frame = 4;
-				display.playSound( 'bomb' );
+				playSound( 'bomb' );
 				game.actors.push( this.bombs.shift() );
 			} else {
 				this.bomb_frame--;
@@ -447,7 +450,7 @@ class Air extends Actor {
 
 	explode() {
 		super.explode();
-		display.playSound( 'expa' );
+		playSound( 'expa' );
 		game.addPoints( this.level * 50 );
 	}
 
@@ -456,7 +459,7 @@ class Air extends Actor {
 		let pl = game.player;
 		let collision = this.coll( { x: pl.x, y: pl.y, r: sprites.pl_sz } );
 		if( collision ) {
-			display.playSound( 'hit' );
+			playSound( 'hit' );
 			this.explode();
 			game.player.damage( this.dmg );
 		}
@@ -551,7 +554,7 @@ class GroundTank extends Ground {
 	explode() {
 		super.explode();
 		if( !game.ncontrol ) {
-			display.playSound( 'expg' );
+			playSound( 'expg' );
 		}
 		game.addPoints( this.level * 200 );
 	}
@@ -684,7 +687,7 @@ class TextParticle extends Particle {
 		this.vy = -1;
 		this.color = '#FFF';
 		this.deccel = 0;
-		this.max_frames = 60;
+		this.mfrs = 60;
 		this.is_ground = is_ground || false;
 		this.size = 30;
 		if( is_ground ) {
@@ -701,7 +704,7 @@ class TextParticle extends Particle {
 				this.remv = true;
 			}
 		} else {
-			if( this.f > this.max_frames ) {
+			if( this.f > this.mfrs ) {
 				this.remv = true;
 			}
 		}
@@ -734,7 +737,7 @@ class Lazer extends Actor {
 			this.x = x + this.x_offset;
 			this.y = y;
 			if( this.sound ) {
-				display.playSound( 'lazer1' );
+				playSound( 'lazer1' );
 			}
 		}
 		this.y += this.vy;
@@ -789,7 +792,7 @@ class Bullet extends Actor {
 		this.y += this.vy;
 		let collision = this.coll( game.player );
 		if( collision ) {
-			display.playSound( 'hit' );
+			playSound( 'hit' );
 			game.player.damage( this.dmg );
 			this.explode();
 		}
@@ -804,7 +807,7 @@ class Bomb extends Actor {
 		this.y = y;
 		this.target_y = ty;
 		this.sprite = 'bomb' + type;
-		this.max_frames = 40;
+		this.mfrs = 40;
 		this.r = 7;
 		this.expl = 'expl_bomb';
 	}
@@ -816,22 +819,22 @@ class Bomb extends Actor {
 
 	update() {
 		this.y = this.sy +
-			display.normalize( this.f, 0, this.max_frames, 0, this.target_y ) +
-			this.max_frames * game.tss;
+			display.normalize( this.f, 0, this.mfrs, 0, this.target_y ) +
+			this.mfrs * game.tss;
 		this.f++;
-		if( this.f === this.max_frames ) {
+		if( this.f === this.mfrs ) {
 			for( let i = 0; i < game.actors.length; i++ ) {
 				let act = game.actors[ i ];
 				if( ( act instanceof GroundTank || act instanceof GroundCache ) && !act.is_dead ) {
 					let collision = this.coll( act );
 					if( collision ) {
-						display.playSound( 'sand' );
+						playSound( 'sand' );
 						act.damage( 1 );
 						break;
 					}
 				}
 			}
-			display.playSound( 'bombg' );
+			playSound( 'bombg' );
 			this.explode();
 		}
 	}
@@ -843,12 +846,12 @@ class Harpoon extends Actor {
 		this.x = x;
 		this.y = y;
 		this.sprite = 'harpoon';
-		this.max_frames = 40;
+		this.mfrs = 40;
 		this.r = 7;
 		this.vy = 5;
 		this.expl = 'expl_bomb';
 		this.connected = false;
-		this.upload_frames = 120;
+		this.upfrs = 120;
 		this.maxdist = 300;
 		this.plug = null;
 	}
@@ -858,10 +861,10 @@ class Harpoon extends Actor {
 		this.f++;
 		this.y += this.vy;
 		this.x += this.vx;
-		if( this.f === this.max_frames ) {
+		if( this.f === this.mfrs ) {
 			if( this.connected ) {
-				display.playSound( 'upl' );
-				game.addText( 'Upload success!', '#5E5' );
+				playSound( 'upl' );
+				game.addText( 'Uploaded! (+5000)', '#5E5' );
 				this.plug.is_dead = true;
 				game.addPoints( 5000 );
 				if( pause_name === 61 ) {
@@ -876,11 +879,11 @@ class Harpoon extends Actor {
 			this.y += game.tss;
 			let dist = display.distance( this.x, this.y, pl.x, pl.y );
 			if( this.f % 20 === 0 ) {
-				display.playSound( 'blip' );
+				playSound( 'blip' );
 			}
 
 			if( dist > this.maxdist ) {
-				display.playSound( 'uplf' );
+				playSound( 'uplf' );
 				this.explode();
 				game.addText( 'Disconnect!', '#E55' );
 			}
@@ -895,7 +898,7 @@ class Harpoon extends Actor {
 						this.vx = this.vy = this.f = 0;
 						this.x = act.x;
 						this.y = act.y;
-						this.max_frames = act.nframes;
+						this.mfrs = act.nframes;
 						this.plug = act;
 						break;
 					}
@@ -927,7 +930,7 @@ class Powerup extends Actor {
 		this.vx = vx;
 		this.vy = vy;
 		this.anim = display.getAnim( 'pwr' + name );
-		this.max_frames = 60 * 6;
+		this.mfrs = 60 * 6;
 		this.accel = 0.2;
 		this.max_ax = 3;
 		this.mxsd = 8;
@@ -942,7 +945,7 @@ class Powerup extends Actor {
 			}
 
 			if( this.name === 'pwrhp' || this.name === 'pwrlazer' || this.name === 'pwr2x' ) {
-				this.turn( 'left' );
+				this.turn( 'l' );
 				if( Math.random() > 0.5 ) {
 					this.acc();
 				}
@@ -952,7 +955,7 @@ class Powerup extends Actor {
 
 	update() {
 		super.update();
-		if( this.f === this.max_frames ) {
+		if( this.f === this.mfrs ) {
 			this.remv = true;
 		}
 		let collision = this.coll( game.player );
@@ -963,28 +966,28 @@ class Powerup extends Actor {
 				if( game.player.hp > game.player.max_hp ) {
 					game.player.hp = game.player.max_hp;
 				}
-				display.playSound( 'hp' );
+				playSound( 'hp' );
 			}
 			if( this.name === 'pwrlazer' ) {
 				game.player.lzlvl++;
 				if( game.player.lzlvl > 3 ) {
 					game.player.lzlvl = 3;
 				}
-				display.playSound( 'special' );
+				playSound( 'special' );
 			}
 			if( this.name === 'pwrcoin' ) {
 				game.addPoints( 1000 );
-				display.playSound( 'coin' );
+				playSound( 'coin' );
 			}
 			if( this.name === 'pwr2x' ) {
 				game.smult *= 2;
-				display.playSound( 'special' );
+				playSound( 'special' );
 			}
 		}
 	}
 
 	draw() {
-		if( this.f > this.max_frames / 2 ) {
+		if( this.f > this.mfrs / 2 ) {
 			if( this.f % 8 < 4 ) {
 				return;
 			}
@@ -1034,7 +1037,7 @@ game = {
 		display.setLoop( game.loop );
 	},
 	start() {
-		display.playSound( 'lvlstart' );
+		playSound( 'lvls' );
 		game.loading = true;
 		setTimeout( () => {
 			pause_name = '';
@@ -1078,7 +1081,7 @@ game = {
 		let r = Math.random;
 		let p = game.player;
 		if( vic ) {
-			display.playSound( 'lvlcomplete' );
+			playSound( 'lvlc' );
 			game.actors.forEach( ( a ) => {
 				a instanceof GroundTank && a.explode();
 			} );
@@ -1091,7 +1094,7 @@ game = {
 		}
 		game.fade( false );
 		if( game.score > game.high_score ) {
-			display.playSound( 'upl' );
+			playSound( 'upl' );
 			game.high_score = game.score;
 			ls && ls.setItem( 'score', game.score );
 			game.hs = true;
@@ -1108,7 +1111,7 @@ game = {
 		const sp = 10;
 		for( let i = 0; i < 5; i++ ) {
 			game.setCB( () => {
-				display.playSound( 'lvlcomplete' );
+				playSound( 'lvlc' );
 			}, sp );
 		}
 		game.fade( false );
@@ -1121,7 +1124,7 @@ game = {
 			game.fade( true );
 			game.camToLvl( game.lvln );
 			game.tss = TSS;
-			display.playSound( 'lvlstart' );
+			playSound( 'lvls' );
 		}, 5 * 60 );
 	},
 	fade( o ) {
@@ -1156,14 +1159,14 @@ game = {
 		if( this.cbs.length ) {
 			let cb_obj = this.cbs[ 0 ];
 			cb_obj.current_frame++;
-			if( cb_obj.current_frame >= cb_obj.max_frames ) {
+			if( cb_obj.current_frame >= cb_obj.mfrs ) {
 				cb_obj.cb();
 				this.cbs.shift();
 			}
 		}
 		this.cbs_pll = this.cbs_pll.filter( ( cb_obj ) => {
 			cb_obj.current_frame++;
-			if( cb_obj.current_frame >= cb_obj.max_frames ) {
+			if( cb_obj.current_frame >= cb_obj.mfrs ) {
 				cb_obj.cb();
 				return false;
 			}
@@ -1199,8 +1202,8 @@ game = {
 		if( !game.started ) {
 			let t = 'High Score ' + game.high_score;
 			drawText( t, 50, 50, { size: 25, color: 'gold' } );
-			drawText( 'PLANET: OFFLINE', 222, 400, { size: 42, color: 'white' } );
-			drawText( 'Press any key to start.', 222, 600, { size: 28, color: 'white' } );
+			drawText( 'PLANET: OFFLINE', 222, 400, { size: 42 } );
+			drawText( 'Press any key to start.', 222, 600, { size: 28 } );
 			return;
 		}
 
@@ -1214,10 +1217,10 @@ game = {
 			display.rect( { x: 400, y: 400, w: 800, h: 800, color: black( game.fopac ) } );
 		}
 		if( game.hs ) {
-			drawText( 'NEW HIGH SCORE!', 220, 120 + Math.random() * 3, { size: 42, color: 'cyan' } );
+			drawText( 'NEW HIGH SCORE!', 220, 120 + Math.random() * 3, { size: 42, c: 'cyan' } );
 		}
 		if( game.vic ) {
-			drawText( 'VICTORY!', 307, 220 + Math.random() * 3, { size: 42, color: 'green' } );
+			drawText( 'VICTORY!', 307, 220 + Math.random() * 3, { size: 42, c: 'green' } );
 		}
 		if( !game.ncontrol ) {
 			game.player.draw();
@@ -1227,7 +1230,7 @@ game = {
 		drawText( 'SCORE: ' + game.score + ' x' + game.smult, dw - 260, 20, { size: 16 } );
 
 		if( game.paused ) {
-			display.rect( { x: 400, y: 400, w: 800, h: 800, color: black( 0.3 ) } );
+			display.rect( { x: 400, y: 400, w: 800, h: 800, c: black( 0.3 ) } );
 			drawText( 'PAUSED', 356, 400, { size: 28 } );
 			drawText( 'ESC to unpause', 341, 450, { size: 16 } );
 		}
@@ -1267,7 +1270,7 @@ game = {
 	setCB( cb, n, is_pll ) {
 		( is_pll ? this.cbs_pll : this.cbs ).push( {
 			cb,
-			max_frames: n,
+			mfrs: n,
 			current_frame: 0
 		} );
 	},
@@ -1301,7 +1304,7 @@ game = {
 		let l = window.app.level.split( '|' ).map( ( a ) => {
 			return a.split( ',' );
 		} );
-		terrain.set( 'main' );
+		terrain.set();
 		let obj = {
 			w: ( arr ) => { //wait
 				let s = new GameControl( pInt( arr[ 1 ] ) );
@@ -1374,6 +1377,12 @@ game = {
 				return;
 			}
 
+			if( k === 'm' ) {
+				display.mute = !display.mute;
+			}
+			if( k === 'escape' ) {
+				game.paused = !game.paused;
+			}
 			if( k === 'arrowleft' ) {
 				game.player.setState( 'left' );
 			}
@@ -1388,12 +1397,6 @@ game = {
 			}
 			if( k === 'c' ) {
 				game.player.harpoon();
-			}
-			if( k === 'escape' ) {
-				game.paused = !game.paused;
-			}
-			if( k === 'm' ) {
-				display.mute = !display.mute;
 			}
 		} );
 

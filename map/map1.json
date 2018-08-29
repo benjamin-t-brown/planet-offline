@@ -286,18 +286,6 @@
                 {
                  "gid":49,
                  "height":32,
-                 "id":42,
-                 "name":"uplink2",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":100,
-                 "y":20064
-                }, 
-                {
-                 "gid":49,
-                 "height":32,
                  "id":43,
                  "name":"uplink4",
                  "rotation":0,
@@ -823,18 +811,6 @@
                  "y":25440
                 }, 
                 {
-                 "gid":50,
-                 "height":32,
-                 "id":112,
-                 "name":"ground2",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":275,
-                 "y":15488
-                }, 
-                {
                  "gid":49,
                  "height":32,
                  "id":114,
@@ -1226,7 +1202,7 @@
                  "visible":true,
                  "width":32,
                  "x":100,
-                 "y":15520
+                 "y":15392
                 }, 
                 {
                  "gid":51,

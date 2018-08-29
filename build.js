@@ -38,15 +38,16 @@ const rules = {
 		const src = fs.readFileSync( './dist/main.js' );
 		const out = `<html><head><style>body{margin:0px;overflow:hidden;background-color:gray;}</style></head>
 <body><canvas id="c" width="800" height="800" style="position:fixed;transform:translate(-50%,-50%);left:50%;top:50%"></canvas></body>
-<footer><script>window.app={};</script><script>
+<footer><script>app={};</script><script>
 ${src}
-window.addEventListener('load',()=>{window.app.display.init('c',()=>{window.app.game.init()})})
+addEventListener('load',()=>{app.display.init('c',app.game.init)})
 </script></footer></html>
 `;
 		fs.writeFileSync( 'dist/index.html', out );
 
 		await _execute( `zip -9 -j dist/main.zip dist/index.html` );
 		await _execute( `stat -c '%n %s' dist/main.zip` );
+		console.log( 'Main entry uses advzip.' );
 		cb();
 	},
 	'clean': async function( cb ) {

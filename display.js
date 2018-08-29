@@ -156,13 +156,13 @@
 		loadSound( 'upl', [ 0, , 0.26, , 0.8, 0.45, , 0.305, , , , , , 0.5555, , 0.6, , , 1, , , , , 0.25 ] );
 		loadSound( 'hp', [ 0, , 0.2084, , 0.2832, 0.5027, , -0.48, 0.6599, , , , , 0.316, , , , , 0.5663, , , , , 0.5 ] );
 		loadSound( 'blip', [ 1, , 0.1086, , 0.1316, 0.2639, , , , , , , , , , , , , 1, , , 0.1, , 0.25 ] );
-		loadSound( 'harpoon', [ 3, , 0.1128, 0.95, 0.51, 0.4741, , -0.287, , , , , , , , 0.3824, 0.5549, -0.2718, 1, , , , , 0.25 ] );
+		loadSound( 'har', [ 3, , 0.1128, 0.95, 0.51, 0.4741, , -0.287, , , , , , , , 0.3824, 0.5549, -0.2718, 1, , , , , 0.25 ] );
 		loadSound( 'uplf', [ 1, , 0.57, 0.1, 0.0482, 0.16, , , 0.02, 0.11, 0.32, , , , , , , , 1, , , 0.1, , 0.25 ] );
-		loadSound( 'lvlfail', [ 0, , 0.52, 0.25, 1, 0.27, , , , 0.47, 0.12, 0.1999, 0.14, 0.3, 0.6399, 0.552, , , 1, , 0.13, , , 0.25 ] );
-		loadSound( 'lvlcomplete', [ 0, 0.04, 0.23, 0.19, 0.59, 0.24, , , , , , , , 0.5161, , , , , 1, , , 0.1, , 0.25 ] );
+		loadSound( 'lvlf', [ 0, , 0.52, 0.25, 1, 0.27, , , , 0.47, 0.12, 0.1999, 0.14, 0.3, 0.6399, 0.552, , , 1, , 0.13, , , 0.25 ] );
+		loadSound( 'lvlc', [ 0, 0.04, 0.23, 0.19, 0.59, 0.24, , , , , , , , 0.5161, , , , , 1, , , 0.1, , 0.25 ] );
 		loadSound( 'hit', [ 3, , 0.0887, , 0.1681, 0.6516, , -0.4825, , , , , , , , , , , 1, , , 0.129, , 0.25 ] );
 		loadSound( 'special', [ 1, , 0.34, , 0.67, 0.16, , 0.4536, , , , -0.24, , , , 0.4182, , , 0.39, , , , , 0.25 ] );
-		loadSound( 'lvlstart', [ 3, 0.28, 0.31, 0.08, 0.7, 0.0081, , 0.4503, 0.0324, 0.8, 0.3, 0.62, 0.25, 0.3357, 0.1636, -0.9992, 0.06, 0.24, 0.9625, , -0.7401, , 0.0036, 0.30 ] );
+		loadSound( 'lvls', [ 3, 0.28, 0.31, 0.08, 0.7, 0.0081, , 0.4503, 0.0324, 0.8, 0.3, 0.62, 0.25, 0.3357, 0.1636, -0.9992, 0.06, 0.24, 0.9625, , -0.7401, , 0.0036, 0.30 ] );
 	};
 
 	display.playSound = function( name ) {
@@ -174,8 +174,8 @@
 		s.channels[ ind ].play();
 	};
 
-	display.setError = function( txt ) {
-		console.error( txt );
+	display.setError = function() {
+		//console.error( txt );
 		display.error = true;
 	};
 
@@ -262,7 +262,7 @@
 			a.name = k;
 			return a;
 		} else {
-			console.error( 'No animation named: ', k );
+			//console.error( 'No animation named: ', k );
 			display.setError();
 			return null;
 		}
@@ -314,9 +314,9 @@
 
 	display.drawText = function( text, x, y, params ) {
 		let ctx = display.getCtx();
-		let { font, size, color } = params || {};
+		let { font, size, color, c } = params || {};
 		ctx.font = ( size || 16 ) + 'px ' + ( font || 'monospace' );
-		ctx.fillStyle = color || 'white';
+		ctx.fillStyle = color || c || 'white';
 		ctx.fillText( text, x, y );
 	};
 
