@@ -296,7 +296,7 @@ class Player extends Actor {
 				let b = new game.Bomb( 1, this.x, this.y, this.target_y );
 				this.bombs.push( b );
 			}
-			game.score -= 50;
+			game.score -= 25;
 		}
 	}
 	harpoon() {
