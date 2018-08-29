@@ -1,0 +1,26 @@
+{
+  "name": "planet-offline",
+  "version": "1.0.0",
+  "description": "This is a game.",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjamin-t-brown/planet-offline.git"
+  },
+  "keywords": [
+    "game",
+    "arcade",
+    "js13k"
+  ],
+  "scripts": {
+    "build": "node build.js build"
+  },
+  "author": "Benjamin Brown",
+  "license": "ISC",
+  "homepage": "https://github.com/benjamin-t-brown/planet-offline#readme",
+  "dependencies": {
+    "concat": "^1.0.3",
+    "minimist": "^1.2.0",
+    "uglify-es": "^3.3.9"
+  }
+}

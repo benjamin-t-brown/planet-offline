@@ -1,0 +1,34 @@
+<html>
+<head>
+<style>
+body {
+	margin: 0px;
+	overflow: hidden;
+	background-color: gray;
+}
+</style>
+</head>
+<body>
+<canvas id="c" width="800" height="800" style="position: fixed; transform: translate(-50%, -50%); left: 50%; top: 50%">
+</canvas>
+</body>
+<footer>
+<script>
+window.app = {};
+</script>
+<script src="jsfxr.js"></script>
+<script src="display.js"></script>
+<script src="levels.js"></script>
+<script src="terrain.js"></script>
+<script src="sprites.js"></script>
+<script src="game.js"></script>
+<script>
+window.addEventListener( 'load', () => {
+	window.app.display.init( 'c', () => {
+		window.app.game.init();
+	} );
+} );
+</script>
+</footer>
+
+</html>
