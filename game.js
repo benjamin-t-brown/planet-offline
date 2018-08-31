@@ -25,32 +25,34 @@ function hedWithinBand( dh, band ) {
 	return dh < band || ( dh > ( 360 - band ) && dh < ( 360 ) );
 }
 
+// Everything on the screen that isnt the background terrain extends the Actor class.  (Also maybe
+// some direct drawText calls in the main loop.)
 class Actor {
 	constructor( name ) {
-		this.f = 0;
-		this.name = name;
-		this.speed = 6;
-		this.mxsd = 4;
-		this.x = 0;
-		this.y = 0;
-		this.r = 10;
-		this.w = 10;
-		this.h = 10;
-		this.vx = 0;
-		this.vy = 0;
-		this.ax = 0;
-		this.hp = 1;
-		this.max_ax = 1;
-		this.accel = 0.2;
-		this.deccel = 0.05;
-		this.hed = 0;
-		this.isac = false;
-		this.remv = false;
-		this.state = '';
-		this.expl = 'expl_air';
-		this.anim = null;
-		this.sprite = null;
-		this.ai = function(){};
+		this.f = 0; // stands for 'frame', counter variable that incremented by one each frame
+		this.name = name; // name, used to construct sprite
+		this.speed = 6; //speed, pixels per frame
+		this.mxsd = 4; // max speed, pixels per frame (if accelerating with accelerate func
+		this.x = 0; // x position on screen, in pixels
+		this.y = 0; // y position on screen, in pixels
+		this.r = 10; // radius of circle used for collisions
+		this.w = 10; // width (not really used)
+		this.h = 10; // height (not really used)
+		this.vx = 0; // x velocity, in pixels
+		this.vy = 0; // y velocity, in pixels
+		this.ax = 0; // turning velocity, in degrees per frame
+		this.maxax = 1; // max turning velocity, in degrees per frame
+		this.hp = 1; // hit points
+		this.accel = 0.2; // rate of acceleration, in pixels per frame
+		this.deccel = 0.05; // rate of decelleration if not accelerating, in pixels per frame
+		this.hed = 0; //heading, in degrees
+		this.isac = false; // is_accelerating
+		this.remv = false; // if true, this actor will be removed by the game on the current frame
+		this.state = ''; // animation state, used only by player
+		this.expl = 'expl_air'; // explode animation name
+		this.anim = null; // actor's animation, if it has one
+		this.sprite = null; // actor's sprite, if it has one
+		this.ai = function(){}; // the function that determines what this actor does every frame
 	}
 
 	setState( state ) {
@@ -61,6 +63,8 @@ class Actor {
 		this.anim = display.getAnim( this.name + '_' + state );
 	}
 
+	// GetHeadingTowards, given an x, y position, return the heading, in degrees that
+	// would mean this actor was pointing towards the position
 	getHedTo( { x, y } ){
 		let leny = y - this.y;
 		let lenx = x - this.x;
@@ -84,18 +88,20 @@ class Actor {
 		return ret;
 	}
 
+	// point at a position
 	pointAt( { x, y } ) {
 		this.hed = this.getHedTo( { x, y } );
 	}
 
 	turn( direction ) {
 		if( direction === 'l' ) {
-			this.ax = -this.max_ax;
+			this.ax = -this.maxax;
 		} else {
-			this.ax = this.max_ax;
+			this.ax = this.maxax;
 		}
 	}
 
+	// turn towards a position, limited by maxax
 	turnTowards( { x, y } ){
 		let h = this.getHedTo( { x, y } );
 
@@ -114,6 +120,7 @@ class Actor {
 		}
 	}
 
+	// accelerate, up to max speed at intervals of this.accel
 	acc() {
 		let { x: maxvx, y: maxvy } = display.hedToVec( this.hed, this.mxsd );
 
@@ -131,6 +138,7 @@ class Actor {
 		this.isac = true;
 	}
 
+	// deccelerate, as if air friction was slowing this actor down at intervals of this.deccel
 	decc() {
 		let maxvx = 0.0;
 		let maxvy = 0.0;
@@ -155,6 +163,7 @@ class Actor {
 		}
 	}
 
+	// collides, does this actor collide with the given circle?
 	coll( { x, y, r } ) {
 		if( game.ncontrol ) {
 			return false;
@@ -166,6 +175,7 @@ class Actor {
 		}
 	}
 
+	// shortcut to mark actor as removed and add an explode particle
 	explode() {
 		this.remv = true;
 		if( this.expl ) {
@@ -173,6 +183,7 @@ class Actor {
 		}
 	}
 
+	// fire a bullet, only used by GroundTank actors
 	fire( type, level, n ) {
 		let cb = () => {
 			let v = 40;
@@ -191,6 +202,7 @@ class Actor {
 		}
 	}
 
+	// inflict damage on this actor, if it would kill this actor, then explode
 	damage( n ) {
 		this.hp -= n;
 		if( this.hp <= 0 ) {
@@ -238,17 +250,20 @@ class Player extends Actor {
 		this.y = 400;
 		this.r = 25;
 		this.mtgy = -150; // max target y
-		this.tgy = -150;
+		this.tgy = -150; // offset of the green target "x" where the bombs drop
 		this.setState( 'default' );
 		this.lzrcd = 20; // lazer cooldown
 		this.lzfrm = 20; // lazer frame (counts cooldown)
 		this.lzlvl = 1; // lazer level
 		this.mhp = 100; //max hp
 		this.hp = this.mhp;
-		this.uplink = null;
-		this.bombs = [];
+		this.uplink = null; // reference to the current uplink (if there is one)
+		this.bombs = []; // array that holds the bombs, can only drop one per 5 frames
 		this.bfrm = 0; //bomb frame
 	}
+
+	// I made the game reduce points for firing this because players just held down 'z' the
+	// entire game
 	lazer() {
 		if( this.lzfrm > this.lzrcd ) {
 			this.lzfrm = 0;
@@ -306,12 +321,16 @@ class Player extends Actor {
 			game.actors.push( h );
 		}
 	}
+
+	// If the player explodes, the game is over
 	explode() {
 		if( !game.ncontrol ) {
 			playSound( 'lvlf' );
 			game.end();
 		}
 	}
+
+	// Add HP to the player, (used by HP powerup), but dont let hp get above max
 	plusHP( n ) {
 		let a = this.hp += n;
 		if( a > this.mhp ) {
@@ -380,6 +399,8 @@ class Player extends Actor {
 	draw() {
 		super.draw();
 		display.drawSprite( 'target', this.x, this.y + this.tgy );
+
+		// Drawing the hp bar in here saves like maybe 4 bytes I think
 		let hpw = 160;
 		let chpw = display.normalize( this.hp, 0, this.mhp, 0, hpw );
 		let hph = 10;
@@ -407,16 +428,19 @@ class Player extends Actor {
 	}
 }
 
+// All the things flying at the player from offcreen are classified as Air
 class Air extends Actor {
 	constructor( name ) {
 		super( name );
 		this.sprite = name;
 		this.expl = 'expl_air';
 		this.level = parseInt( name.slice( -1 ) );
+
+		// this.level starts at index 1, so the first value in these arrays is just 0
 		this.dmg = [ 0, 3, 5, 8, 10 ][ this.level ];
 		this.mxsd = [ 0, 4, 5, 6, 7 ][ this.level ];
 		this.hp = [ 0, 1, 5, 15, 20 ][ this.level ];
-		this.max_ax = [ 0, 1, 1, 1.5, 2 ][ this.level ];
+		this.maxax = [ 0, 1, 1, 1.5, 2 ][ this.level ];
 		this.ai = () => {
 			let pl = game.player;
 
@@ -446,7 +470,7 @@ class Air extends Actor {
 		super.damage( n );
 		this.anim = display.getAnim( this.name + 'dmg' );
 		game.setCB( () => {
-			if( !this.is_dead ) {
+			if( !this.dead ) {
 				this.anim = display.getAnim( this.name );
 			}
 		}, 6, true );
@@ -484,35 +508,45 @@ class Ground extends Actor {
 		this.deadsprite = 'grounddead';
 		//this.expl = 'expl_ground';
 		this.anim = display.getAnim( name );
-		this.max_ax = 2;
-		this.is_dead = false;
+		this.maxax = 2;
+		this.dead = false;
 	}
 
+	// ground targets needed a good explosion because they're a bit tougher to take down, so this
+	// spawns 5 explode particles instead of one, randomly above the target.
 	explode() {
 		let v = 50;
 		for( let i = 0; i < 5; i++ ) {
 			game.addPar( this.expl, this.x - v / 2 + Math.random() * v, this.y - v / 2 + Math.random() * v );
 		}
 		this.anim = display.getAnim( this.deadsprite );
-		this.is_dead = true;
+		this.dead = true;
 	}
 
+	// When damaging a ground target, players wanted to know if the bomb hit with a visual queue,
+	// so this function turns them white for 6 frames before returning them to their default
+	// sprite
 	damage( n ) {
 		super.damage( n );
-		if( !this.is_dead ) {
+		if( !this.dead ) {
 			this.anim = display.getAnim( this.name + 'dmg' );
 			game.setCB( () => {
-				if( !this.is_dead ) {
+				if( !this.dead ) {
 					this.anim = display.getAnim( this.name );
 				}
 			}, 6, true );
 		}
 	}
 
+	// terrain is drawn bottom up.  (0,0) is the bottom left of the terrain, and offseting
+	// it by y is moving it downwards.  800 here is the size of the height of the screen.
 	getY() {
 		return ( 800 - this.ty ) * 32 + terrain.getYOffset( game.tyoff );
 	}
 
+	// This function has a leeway band of 100 pixels, because some stuff was marked with a
+	// radius of 50, and you could clearly see it on the screen even though this function
+	// was marking them as not visible.
 	isVisible() {
 		let y = this.getY();
 		return y >= -100 && y <= dh + 100;
@@ -528,7 +562,7 @@ class Ground extends Actor {
 			let y = this.getY();
 			let x = this.tx * 25;
 			display.drawAnim( this.anim, x, y );
-			if( !this.is_dead && this.turret_anim ) {
+			if( !this.dead && this.turret_anim ) {
 				display.drawAnim( this.turret_anim, x, y, 1, this.hed );
 			}
 		}
@@ -540,14 +574,18 @@ class GroundTank extends Ground {
 		super( name, x, y );
 		this.turret_anim = display.getAnim( 'turret' + this.level );
 		this.hp = [ 0, 6, 12, 16 ][ this.level ];
-		this.fire_rate = [ 0, 170, 130, 100 ][ this.level ];
+
+		// number of frames before turret can fire.  Theres this weird bug that happens
+		// where sometimes the turrets fire double the bullets at half the rate, but I
+		// liked that mechanic enough that I never bothered trying to fix it
+		this.firerate = [ 0, 170, 130, 100 ][ this.level ];
 		this.ai = () => {
 			let pl = game.player;
-			if( !this.is_dead && this.getY() > 50 && this.getY() < dh ) {
+			if( !this.dead && this.getY() > 50 && this.getY() < dh ) {
 				this.turnTowards( pl );
 				let dh = Math.abs( this.hed - this.getHedTo( pl ) );
 				if( hedWithinBand( dh, 25 ) ) {
-					if( display.frame % this.fire_rate === 0 ) {
+					if( display.frame % this.firerate === 0 ) {
 						this.fire( 'bullet', this.level, 8 );
 					}
 				}
@@ -601,8 +639,8 @@ class GameControl extends Ground {
 		this.amt = 5; // spawn amount
 		this.wait = 0; // time to wait before spawning
 		this.pause_seconds = 0; //number of seconds to pause scrolling
-		this.begin_level = 0;
-		this.end_level = 0;
+		this.begin_level = 0; //index of the beginning of the level this GameControl represents
+		this.end_level = 0; //index of the end of level this GameControl represents
 	}
 
 	update() {
@@ -648,7 +686,7 @@ class Plug extends Ground {
 		if( this.isVisible() ) {
 			let y = this.getY();
 			let x = this.tx * 25;
-			if( this.is_dead ) {
+			if( this.dead ) {
 				display.drawAnim( this.deadanim, x, y );
 			} else {
 				display.drawAnim( this.anim, x, y );
@@ -725,11 +763,13 @@ class Lazer extends Actor {
 		this.damage = 1;
 		this.vy = -10;
 		this.vx = 0;
-		this.isdel = true;
+		this.isdel = true; // is delayed, will only display/update as soon as this.f > this.delay
 		this.delay = 0;
 		this.x_offset = 0;
 		this.sprite = 'lazer' + type;
 		this.expl = 'expl_lazer';
+
+		// if all lazers had sound, the game would run out of channels rly fast (there's a lot of lazers on the screen at once)
 		this.sound = is_sound;
 	}
 
@@ -770,6 +810,8 @@ class Lazer extends Actor {
 	}
 }
 
+// This is almost exactly the same as the lazer class, but can send bullets an arbitrary
+// direction, instead of just up.
 class Bullet extends Actor {
 	constructor( type, hed ) {
 		super( 'bullet_' + type );
@@ -829,7 +871,7 @@ class Bomb extends Actor {
 		if( this.f === this.mfrs ) {
 			for( let i = 0; i < game.actors.length; i++ ) {
 				let act = game.actors[ i ];
-				if( ( act instanceof GroundTank || act instanceof GroundCache ) && !act.is_dead ) {
+				if( ( act instanceof GroundTank || act instanceof GroundCache ) && !act.dead ) {
 					let collision = this.coll( act );
 					if( collision ) {
 						playSound( 'sand' );
@@ -869,7 +911,7 @@ class Harpoon extends Actor {
 			if( this.connected ) {
 				playSound( 'upl' );
 				game.addText( 'Uploaded! (+5000)', '#5E5' );
-				this.plug.is_dead = true;
+				this.plug.dead = true;
 				game.aPts( 5000 );
 				if( pause_name === 61 ) {
 					game.go( 0 );
@@ -894,7 +936,7 @@ class Harpoon extends Actor {
 		} else {
 			for( let i = 0; i < game.actors.length; i++ ) {
 				let act = game.actors[ i ];
-				if( act instanceof Plug && !act.is_dead ) {
+				if( act instanceof Plug && !act.dead ) {
 					let collision = this.coll( act );
 					if( collision ) {
 						game.addText( 'Uploading...' );
@@ -940,7 +982,7 @@ class Powerup extends Actor {
 		this.anim = display.getAnim( 'pwr' + name );
 		this.mfrs = 60 * 6;
 		this.accel = 0.2;
-		this.max_ax = 3;
+		this.maxax = 3;
 		this.mxsd = 8;
 		this.r = 15;
 		this.ai = () => {
@@ -1042,14 +1084,18 @@ game = {
 		display.clearScreen();
 		display.setLoop( game.loop );
 	},
+
+	// Start the game, resetting all variables except for the high score
 	start() {
 		playSound( 'lvls' );
 		game.loading = true;
 
-		// the game noticibly lags while setting the terrain, so  this makes it look like a loading
-		// blac screen for 100 ms whenever it is loaded
+		// the game noticibly lags while setting the terrain, so this makes it look like a loading
+		// black screen for 100 ms whenever it is loaded
 		setTimeout( () => {
 			pause_name = '';
+
+			//I think this maybe saved like 8 bytes over just saying game.loading, game.started... etc
 			Object.assign( game, {
 				loading: 0,
 				started: 1,
@@ -1070,6 +1116,8 @@ game = {
 			game.fade( true );
 		}, 100 );
 	},
+
+	// Move the "camera" (the terrain offset) to the position at the start of the level number given
 	camToLvl( lvln ) {
 		let c = game.actors.reduce( ( prev, c ) => {
 			if( prev ) {
@@ -1085,6 +1133,8 @@ game = {
 		// for testing that the end game victory screen works
 		//game.tyoff = 24500;
 	},
+
+	// the "GameOver" function, if vic is true, then the player completed the entire game.
 	end( vic ) {
 		game.cbs = [];
 		game.cbs_pll = [];
@@ -1118,6 +1168,8 @@ game = {
 			game.vic = false;
 		}, 60 );
 	},
+
+	// called when a level is over, also calls the end game function if it is the last level
 	endLevel() {
 		game.tss = 0;
 		const sp = 10;
@@ -1139,6 +1191,8 @@ game = {
 			playSound( 'lvls' );
 		}, 5 * 60 );
 	},
+
+	// fade(true) fades from black screen to game, fade(false) fades from game to black screen
 	fade( o ) {
 		for( let i = 0; i < 10; i++ ) {
 			if( o ) {
@@ -1153,6 +1207,8 @@ game = {
 			}, 8 );
 		}
 	},
+
+	// the main game loop
 	loop() {
 		if( game.paused ) {
 			display.clearScreen();
@@ -1305,12 +1361,20 @@ game = {
 	aPts( p ) {
 		game.score += p * game.smult;
 	},
+
+	// Stupid hack to make the first pause screen move forward when both the uplink has been
+	// uploaded, and the cache destroyed on the opening screen.  Players were having trouble
+	// reading the text fast enough and getting confused so I made it mandatory for them
+	// to at least accomplish something before even starting the game.
 	go( i ) {
 		if( ( this.i === 1 && i === 0 ) || ( this.i === 0 && i === 1 ) ) {
 			game.tss = TSS;
 		}
 		this.i = i;
 	},
+
+	// Set the initial game state, including generating the map and adding all the spawns.
+	// Lags game, especially on lower end computers.
 	createObjects() {
 		game.level_frame = 0;
 		let l = window.app.level.split( '|' ).map( ( a ) => {
