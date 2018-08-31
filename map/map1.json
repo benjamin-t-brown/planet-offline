@@ -322,18 +322,6 @@
                 {
                  "gid":50,
                  "height":32,
-                 "id":46,
-                 "name":"ground1",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":300,
-                 "y":18752
-                }, 
-                {
-                 "gid":50,
-                 "height":32,
                  "id":48,
                  "name":"ground1",
                  "rotation":0,
@@ -521,18 +509,6 @@
                  "width":32,
                  "x":350,
                  "y":23104
-                }, 
-                {
-                 "gid":51,
-                 "height":32,
-                 "id":75,
-                 "name":"spawn_r:air1,10",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":700,
-                 "y":22080
                 }, 
                 {
                  "gid":51,
@@ -790,19 +766,19 @@
                  "gid":1,
                  "height":32,
                  "id":110,
-                 "name":"text,Press 'X' to bomb.",
+                 "name":"text,Press 'X' to bomb ground targets.",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":125,
+                 "x":75,
                  "y":25120
                 }, 
                 {
                  "gid":1,
                  "height":32,
                  "id":111,
-                 "name":"text,Hold 'Z' to lazer.",
+                 "name":"text,Hold 'Z' to lazer air targets.",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -2136,6 +2112,30 @@
                  "width":32,
                  "x":325,
                  "y":25376
+                }, 
+                {
+                 "gid":49,
+                 "height":32,
+                 "id":262,
+                 "name":"cache,hp",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":275,
+                 "y":1920
+                }, 
+                {
+                 "gid":49,
+                 "height":32,
+                 "id":263,
+                 "name":"cache,hp",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":125,
+                 "y":4352
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2143,7 +2143,7 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":262,
+ "nextobjectid":264,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.1.5",

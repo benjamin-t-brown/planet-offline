@@ -1041,19 +1041,22 @@ game = {
 		game.loading = true;
 		setTimeout( () => {
 			pause_name = '';
-			game.loading = false;
-			game.started = true;
-			game.paused = false;
-			game.scrolling = true;
-			game.lvln = 1;
-			game.actors = [];
-			game.spawns = [];
+			Object.assign( game, {
+				loading: 0,
+				started: 1,
+				paused: 0,
+				scrolling: 1,
+				lvln: 1,
+				actors: [],
+				spawns: [],
+				player: new Player(),
+				score: 0,
+				smult: 1,
+				spawn_frame: 0,
+				tss: TSS,
+				i: null
+			} );
 			game.createObjects();
-			game.player = new Player();
-			game.score = 0;
-			game.smult = 1;
-			game.spawn_frame = 0;
-			game.tss = TSS;
 			game.camToLvl( game.lvln );
 			game.fade( true );
 		}, 100 );
