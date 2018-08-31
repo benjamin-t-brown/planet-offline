@@ -613,28 +613,28 @@ else {
 		// 	let a = document.getElementById( name );
 		// 	a.load();
 		// 	a.addEventListener( 'canplaythrough', () => {
-		// 		let channels = [ a ];
+		// 		let cha = [ a ];
 		// 		for( let i = 0; i < 3; i++ ) {
-		// 			channels.push( a.cloneNode( true ) );
+		// 			cha.push( a.cloneNode( true ) );
 		// 		}
 		// 		display.sounds[ name ] = {
 		// 			cc: 0,
-		// 			channels
+		// 			cha
 		// 		};
 		// 	} );
 		// };
 		let jsfxr = window.jsfxr;
 		let loadSound = ( name, args ) => {
 			let url = jsfxr( args );
-			let channels = [];
+			let cha = [];
 			for ( let i = 0; i < 4; i++ ) {
 				let s = new Audio();
 				s.src = url;
-				channels.push( s );
+				cha.push( s );
 			}
 			display.sounds[ name ] = {
 				cc: 0,
-				channels
+				cha
 			};
 		};
 
@@ -645,7 +645,7 @@ else {
 		loadSound( 'expg', [ 3,,0.3646,0.7897,0.2321,0.1281,,-0.3439,,,,,,,,,0.2502,-0.0041,1,,,,,0.25 ] );
 		loadSound( 'bombg', [ 3, , 0.01, 0.6031, 0.4332, 0.027, , 0.2071, , , , , , , , , , , 1, , , , , 0.25 ] );
 		loadSound( 'bullet', [ 1, 0.0054, 0.2302, , 0.2346, 0.9064, 0.1659, -0.6154, 0.0044, 0.0708, 0.0179, 0.0085, 0.066, 0.5, -0.5604, 0.0104, 0.0832, -0.0182, 0.9625, 0.0138, 0.1126, 0.088, 0.0132, 0.25 ] );
-		loadSound( 'lazer1', [ 2, 0.0054, 0.2302, , 0.2346, 0.76, , -0.6154, 0.0044, 0.0708, 0.0179, 0.0085, 0.066, 0.5, -0.5604, 0.0104, 0.0832, -0.0182, 0.9625, 0.0138, 0.1126, 0.088, 0.0132, 0.15 ] );
+		loadSound( 'lz', [ 2, 0.0054, 0.2302, , 0.2346, 0.76, , -0.6154, 0.0044, 0.0708, 0.0179, 0.0085, 0.066, 0.5, -0.5604, 0.0104, 0.0832, -0.0182, 0.9625, 0.0138, 0.1126, 0.088, 0.0132, 0.15 ] );
 		loadSound( 'upl', [ 0, , 0.26, , 0.8, 0.45, , 0.305, , , , , , 0.5555, , 0.6, , , 1, , , , , 0.25 ] );
 		loadSound( 'hp', [ 0, , 0.2084, , 0.2832, 0.5027, , -0.48, 0.6599, , , , , 0.316, , , , , 0.5663, , , , , 0.5 ] );
 		loadSound( 'blip', [ 1, , 0.1086, , 0.1316, 0.2639, , , , , , , , , , , , , 1, , , 0.1, , 0.25 ] );
@@ -654,7 +654,7 @@ else {
 		loadSound( 'lvlf', [ 0, , 0.52, 0.25, 1, 0.27, , , , 0.47, 0.12, 0.1999, 0.14, 0.3, 0.6399, 0.552, , , 1, , 0.13, , , 0.25 ] );
 		loadSound( 'lvlc', [ 0, 0.04, 0.23, 0.19, 0.59, 0.24, , , , , , , , 0.5161, , , , , 1, , , 0.1, , 0.25 ] );
 		loadSound( 'hit', [ 3, , 0.0887, , 0.1681, 0.6516, , -0.4825, , , , , , , , , , , 1, , , 0.129, , 0.25 ] );
-		loadSound( 'special', [ 1, , 0.34, , 0.67, 0.16, , 0.4536, , , , -0.24, , , , 0.4182, , , 0.39, , , , , 0.25 ] );
+		loadSound( 'sp', [ 1, , 0.34, , 0.67, 0.16, , 0.4536, , , , -0.24, , , , 0.4182, , , 0.39, , , , , 0.25 ] );
 		loadSound( 'lvls', [ 3, 0.28, 0.31, 0.08, 0.7, 0.0081, , 0.4503, 0.0324, 0.8, 0.3, 0.62, 0.25, 0.3357, 0.1636, -0.9992, 0.06, 0.24, 0.9625, , -0.7401, , 0.0036, 0.30 ] );
 	};
 
@@ -663,8 +663,8 @@ else {
 			return;
 		}
 		let s = display.sounds[ name ];
-		let ind = ( s && s.cc++ % s.channels.length );
-		s.channels[ ind ].play();
+		let ind = ( s && s.cc++ % s.cha.length );
+		s.cha[ ind ].play();
 	};
 
 	display.setError = function() {
@@ -840,30 +840,30 @@ else {
 		window.app.sprites.createSprites();
 
 		let player_fs = 5;
-		display.cAnim( 'player_default', () => {
+		display.cAnim( 'pl_default', () => {
 			let a = new Animation( '', false );
 			a.s( 'p2', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_from_left', () => {
+		display.cAnim( 'pl_from_left', () => {
 			let a = new Animation( '', false );
 			a.s( 'p1', player_fs );
 			a.s( 'p2', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_from_right', () => {
+		display.cAnim( 'pl_from_right', () => {
 			let a = new Animation( '', false );
 			a.s( 'p3', player_fs );
 			a.s( 'p2', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_left', () => {
+		display.cAnim( 'pl_left', () => {
 			let a = new Animation( '', false );
 			a.s( 'p1', player_fs );
 			a.s( 'p0', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_right', () => {
+		display.cAnim( 'pl_right', () => {
 			let a = new Animation( '', false );
 			a.s( 'p3', player_fs );
 			a.s( 'p4', player_fs );
@@ -934,7 +934,7 @@ else {
 } )();
 
 ( function() {
-window.app.level = "sl,275,1|sl,533,2|sl,800,3|bl,1,1|bl,279,2|bl,538,3|p,80,15|s,38,c,a,1,15|u,10,57,4|u,15,41,4|c,27,73,5,2x|g,10,65,1|g,9,41,1|g,24,81,1|g,3,94,1|c,15,105,5,coin5|c,29,107,5,coin2|u,7,114,2|u,15,126,2|g,15,116,1|g,7,125,1|g,28,123,1|c,19,144,10,hp|u,13,178,4|g,25,185,1|g,3,208,1|g,10,226,1|p,257,20|u,5,241,2|u,28,243,2|g,11,246,2|g,29,240,1|c,20,249,5,coin3|s,62,c,a,1,15|s,70,c,a,1,15|s,77,c,a,1,15|w,78,5,s,78,c,a,1,15|s,89,l,a,1,15|s,96,r,a,1,10|s,111,l,a,1,10|w,78,5,s,78,l,a,1,5|w,78,10,s,78,c,a,1,20|s,128,r,a,1,10|s,147,r,a,1,10|s,186,a,a,1,26|s,208,r,a,1,20|s,223,r,a,1,20|s,238,r,a,1,20|s,255,c,a,1,10|s,255,r,a,1,10|s,255,l,a,1,10|s,216,l,a,1,10|s,232,l,a,1,10|s,199,l,a,1,10|s,159,c,a,1,10|s,168,l,a,1,10|s,139,l,a,1,15|c,12,193,5,2x|c,23,228,5,hp|s,50,c,a,1,15|u,23,14,3|w,255,8,s,255,c,a,1,15|t,19,15,Press 'C' to uplink.|t,3,15,Press 'X' to bomb ground targets.|t,12,5,Hold 'Z' to lazer air targets.|c,20,305,10,lazer|g,22,326,2|g,9,345,2|g,13,355,2|g,22,366,2|g,14,380,2|g,20,380,1|c,25,384,10,hp|u,19,366,4|u,16,355,4|u,12,345,4|u,14,376,5|g,8,400,2|g,22,410,2|g,10,424,2|g,21,441,2|g,8,464,2|g,11,486,2|u,26,400,4|u,9,411,4|u,18,429,4|u,11,441,4|u,12,463,4|u,20,463,4|u,9,496,4|c,5,509,10,hp|c,10,512,10,2x|c,16,509,10,hp|c,21,512,10,coin5|p,525,10|g,24,464,1|p,475,20|s,319,l,a,1,21|s,333,c,a,1,25|s,350,a,a,2,25|s,369,a,a,1,20|p,390,15|s,388,c,a,2,10|w,388,5,s,388,a,a,1,25|s,400,c,a,2,10|s,417,l,a,2,25|s,441,r,a,2,15|s,473,a,a,2,25|w,473,5,s,473,r,a,1,15|w,473,5,s,473,l,a,1,15|w,473,15,s,473,r,a,2,10|w,486,10,s,486,c,a,2,15|w,496,10,s,496,c,a,2,15|p,18,61|c,9,14,5,coin3|g,28,593,2|g,4,787,3|g,15,783,2|g,27,787,3|u,4,776,5|u,10,749,5|u,8,759,5|u,8,707,5|u,25,654,5|u,15,560,5|c,20,560,8,lazer|c,28,589,8,2x|c,16,602,10,coin6|c,4,621,8,hp|g,16,598,3|g,4,656,3|g,8,669,3|u,25,618,5|u,7,634,5|u,12,685,5|g,27,692,3|c,29,682,10,coin4|c,19,696,10,coin4|c,3,692,10,2x|u,25,704,5|g,19,715,2|g,2,720,2|g,3,739,2|g,9,744,2|u,15,776,5|p,794,45|s,577,a,a,3,8|s,590,a,a,4,6|s,604,l,a,2,12|s,622,c,a,4,10|s,650,a,a,3,20|s,671,c,a,4,10|s,696,c,a,4,10|s,731,c,a,4,10|s,756,c,a,4,10|s,768,a,a,4,20|s,619,l,a,3,9|s,676,l,a,3,9|s,708,l,a,3,9|s,744,l,a,3,9|s,634,r,a,3,18|s,688,r,a,3,9|s,731,r,a,3,9|s,756,r,a,3,9|s,791,c,a,3,10|w,791,5,s,791,a,a,4,8|w,791,8,s,791,l,a,4,12|w,791,12,s,791,r,a,4,12|w,790,20,s,790,a,a,3,15|w,791,20,s,791,a,a,3,15|w,790,20,s,790,c,a,4,20|w,791,30,s,791,c,a,4,35|u,27,776,5|s,685,a,a,4,15|s,662,a,a,4,15|t,13,7,Arrows to move.|c,11,740,10,hp|c,5,664,10,hp";
+window.app.level = "sl,275,1|sl,533,2|sl,800,3|bl,1,1|bl,279,2|bl,538,3|p,80,15|s,38,c,a,1,15|u,10,57,4|u,15,41,4|c,27,73,5,2x|g,10,65,1|g,9,41,1|g,24,81,1|g,3,94,1|c,15,105,5,coin5|c,29,107,5,coin2|u,7,114,2|u,15,126,2|g,15,116,1|g,7,125,1|g,28,123,1|c,19,144,10,hp|u,13,178,4|g,25,185,1|g,3,208,1|g,10,226,1|p,257,20|u,5,241,2|u,28,243,2|g,11,246,2|g,29,240,1|c,20,249,5,coin3|s,62,c,a,1,15|s,70,c,a,1,15|s,77,c,a,1,15|w,78,5,s,78,c,a,1,15|s,89,l,a,1,15|s,96,r,a,1,10|s,111,l,a,1,10|w,78,5,s,78,l,a,1,5|w,78,10,s,78,c,a,1,20|s,128,r,a,1,10|s,147,r,a,1,10|s,186,a,a,1,26|s,208,r,a,1,20|s,223,r,a,1,20|s,238,r,a,1,20|s,255,c,a,1,10|s,255,r,a,1,10|s,255,l,a,1,10|s,216,l,a,1,10|s,232,l,a,1,10|s,199,l,a,1,10|s,163,c,a,1,10|s,168,l,a,1,10|s,139,l,a,1,15|c,12,193,5,2x|c,23,228,5,hp|s,50,c,a,1,15|u,25,14,3|w,255,8,s,255,c,a,1,15|t,20,15,  Press 'C' to uplink.|t,1,15,Press 'X' to bomb ground targets.|t,9,5, Hold 'Z' to shoot air targets.|c,20,305,10,lazer|g,22,326,2|g,9,345,2|g,13,355,2|g,22,366,2|g,14,380,2|g,20,380,1|c,25,384,10,hp|u,19,366,4|u,16,355,4|u,12,345,4|u,14,376,5|g,8,400,2|g,22,410,2|g,10,424,2|g,21,441,2|g,8,464,2|g,11,486,2|u,26,400,4|u,9,411,4|u,18,429,4|u,11,441,4|u,12,463,4|u,20,463,4|u,9,496,4|c,5,509,10,hp|c,10,512,10,2x|c,16,509,10,hp|c,21,512,10,coin5|p,525,10|g,24,464,1|p,475,20|s,319,l,a,1,21|s,333,c,a,1,25|s,350,a,a,2,25|s,369,a,a,1,20|p,390,15|s,388,c,a,2,10|w,388,5,s,388,a,a,1,25|s,400,c,a,2,10|s,417,l,a,2,25|s,441,r,a,2,15|s,473,a,a,2,25|w,473,5,s,473,r,a,1,15|w,473,5,s,473,l,a,1,15|w,473,15,s,473,r,a,2,10|w,486,10,s,486,c,a,2,15|w,496,10,s,496,c,a,2,15|p,18,61|c,8,14,5,coin3|g,28,593,2|g,4,787,3|g,15,783,2|g,27,787,3|u,4,776,5|u,10,749,5|u,8,759,5|u,8,707,5|u,25,654,5|u,15,560,5|c,20,560,10,lazer|c,28,589,10,2x|c,16,602,10,coin6|g,16,598,3|g,4,656,3|g,8,669,3|u,25,618,5|u,7,634,5|u,12,685,5|g,27,692,3|c,29,682,10,coin4|c,19,696,10,coin4|c,3,692,10,2x|u,25,704,5|g,19,715,2|g,2,720,2|g,3,739,2|g,9,744,2|u,15,776,5|p,794,43|s,577,a,a,3,8|s,590,a,a,4,6|s,604,l,a,2,12|s,622,c,a,4,10|s,650,a,a,3,20|s,671,c,a,4,10|s,696,c,a,4,10|s,731,c,a,4,10|s,756,c,a,4,10|s,768,a,a,4,20|s,619,l,a,3,9|s,676,l,a,3,9|s,708,l,a,3,9|s,744,l,a,3,9|s,634,r,a,3,18|s,688,r,a,3,9|s,731,r,a,3,9|s,756,r,a,3,9|s,791,a,a,3,10|w,791,5,s,791,a,a,4,8|w,791,8,s,791,a,a,4,12|w,791,12,s,791,a,a,4,12|w,790,20,s,790,a,a,3,50|w,791,20,s,791,a,a,3,15|w,790,20,s,790,l,a,4,20|w,791,30,s,791,c,a,4,10|u,27,776,5|s,685,a,a,4,15|s,662,a,a,4,15|t,13,9,Arrows to move.|c,11,740,10,hp|c,5,664,10,hp|c,6,782,15,coin10|c,25,782,15,coin10|s,155,c,a,1,10";
 } )();
 
 ( function() {
@@ -2056,21 +2056,21 @@ class Actor {
 
 class Player extends Actor {
 	constructor() {
-		super( 'player' );
+		super( 'pl' );
 		this.x = 400;
 		this.y = 400;
 		this.r = 25;
-		this.max_target_y = -150;
-		this.target_y = -150;
+		this.mtgy = -150; // max target y
+		this.tgy = -150;
 		this.setState( 'default' );
 		this.lzrcd = 20; // lazer cooldown
 		this.lzfrm = 20; // lazer frame (counts cooldown)
 		this.lzlvl = 1; // lazer level
-		this.max_hp = 100;
-		this.hp = this.max_hp;
+		this.mhp = 100; //max hp
+		this.hp = this.mhp;
 		this.uplink = null;
 		this.bombs = [];
-		this.bomb_frame = 0;
+		this.bfrm = 0; //bomb frame
 	}
 	lazer() {
 		if( this.lzfrm > this.lzrcd ) {
@@ -2116,10 +2116,9 @@ class Player extends Actor {
 		if( this.bombs.length === 0 ) {
 			let nbombs = [ 0, 1, 2, 4 ][ game.lvln ];
 			for( let i = 0; i < nbombs; i++ ) {
-				let b = new game.Bomb( 1, this.x, this.y, this.target_y );
+				let b = new game.Bomb( 1, this.x, this.y, this.tgy );
 				this.bombs.push( b );
 			}
-			game.score -= 25;
 		}
 	}
 	harpoon() {
@@ -2128,13 +2127,18 @@ class Player extends Actor {
 			this.uplink = h;
 			playSound( 'har' );
 			game.actors.push( h );
-			game.score -= 100;
 		}
 	}
 	explode() {
 		if( !game.ncontrol ) {
 			playSound( 'lvlf' );
 			game.end();
+		}
+	}
+	plusHP( n ) {
+		let a = this.hp += n;
+		if( a > this.mhp ) {
+			this.hp = this.mhp;
 		}
 	}
 	update() {
@@ -2150,9 +2154,9 @@ class Player extends Actor {
 		} if( game.keys.arrowdown ) {
 			this.y += this.speed;
 		} else {
-			this.target_y -= 4;
-			if( this.target_y < this.max_target_y ) {
-				this.target_y = this.max_target_y;
+			this.tgy -= 4;
+			if( this.tgy < this.mtgy ) {
+				this.tgy = this.mtgy;
 			}
 		}
 		if( game.keys.z ) {
@@ -2174,9 +2178,9 @@ class Player extends Actor {
 		} else if( this.y > dh ) {
 			this.y = dh;
 			if( game.keys.arrowdown ) {
-				this.target_y += 4;
-				if( this.target_y > 0 ) {
-					this.target_y = 0;
+				this.tgy += 4;
+				if( this.tgy > 0 ) {
+					this.tgy = 0;
 				}
 			}
 		}
@@ -2187,20 +2191,20 @@ class Player extends Actor {
 		}
 
 		if( this.bombs.length ) {
-			if( this.bomb_frame <= 0 ) {
-				this.bomb_frame = 4;
+			if( this.bfrm <= 0 ) {
+				this.bfrm = 4;
 				playSound( 'bomb' );
 				game.actors.push( this.bombs.shift() );
 			} else {
-				this.bomb_frame--;
+				this.bfrm--;
 			}
 		}
 	}
 	draw() {
 		super.draw();
-		display.drawSprite( 'target', this.x, this.y + this.target_y );
+		display.drawSprite( 'target', this.x, this.y + this.tgy );
 		let hpw = 160;
-		let chpw = display.normalize( this.hp, 0, this.max_hp, 0, hpw );
+		let chpw = display.normalize( this.hp, 0, this.mhp, 0, hpw );
 		let hph = 10;
 		let hpy = dh - hph - 2;
 		let hpx = dw - hpw + hpw / 2 - 20;
@@ -2221,7 +2225,7 @@ class Player extends Actor {
 			c: 'blue',
 			outline: 1
 		});
-		let chpct = Math.round( this.hp * 100 / this.max_hp ) + '%';
+		let chpct = Math.round( this.hp * 100 / this.mhp ) + '%';
 		drawText( chpct, hpx - chpct.length * 6.5, hpy + 2, { size: 24, color: 'white' } );
 	}
 }
@@ -2274,7 +2278,7 @@ class Air extends Actor {
 	explode() {
 		super.explode();
 		playSound( 'expa' );
-		game.addPoints( this.level * 50 );
+		game.aPts( this.level * 50 );
 	}
 
 	update() {
@@ -2379,7 +2383,7 @@ class GroundTank extends Ground {
 		if( !game.ncontrol ) {
 			playSound( 'expg' );
 		}
-		game.addPoints( this.level * 200 );
+		game.aPts( this.level * 200 );
 	}
 }
 
@@ -2405,7 +2409,7 @@ class GroundCache extends Ground {
 		} else if( this.wh === '2x' ) {
 			game.addPowerup( '2x', this.x, this.y, 0, 1 );
 		}
-		game.addPoints( 100 );
+		game.aPts( 100 );
 		if( pause_name === 61 ) {
 			game.go( 1 );
 		}
@@ -2534,7 +2538,7 @@ class TextParticle extends Particle {
 	}
 
 	draw() {
-		drawText( this.text, this.x, this.y, { size: this.size, color: this.color } );
+		drawText( this.text, this.x, this.y, this );
 	}
 }
 
@@ -2544,7 +2548,7 @@ class Lazer extends Actor {
 		this.damage = 1;
 		this.vy = -10;
 		this.vx = 0;
-		this.delaying = true;
+		this.isdel = true;
 		this.delay = 0;
 		this.x_offset = 0;
 		this.sprite = 'lazer' + type;
@@ -2554,13 +2558,13 @@ class Lazer extends Actor {
 
 	update() {
 		this.f++;
-		if( this.delaying && this.f > this.delay ) {
+		if( this.isdel && this.f > this.delay ) {
 			const { x, y } = game.player;
-			this.delaying = false;
+			this.isdel = false;
 			this.x = x + this.x_offset;
 			this.y = y;
 			if( this.sound ) {
-				playSound( 'lazer1' );
+				playSound( 'lz' );
 			}
 		}
 		this.y += this.vy;
@@ -2583,7 +2587,7 @@ class Lazer extends Actor {
 	}
 
 	draw() {
-		if( !this.delaying ) {
+		if( !this.isdel ) {
 			super.draw();
 		}
 	}
@@ -2628,9 +2632,9 @@ class Bomb extends Actor {
 		this.x = x;
 		this.sy = y - 20;
 		this.y = y;
-		this.target_y = ty;
+		this.tgy = ty; //target y
 		this.sprite = 'bomb' + type;
-		this.mfrs = 40;
+		this.mfrs = 40; //move frames
 		this.r = 7;
 		this.expl = 'expl_bomb';
 	}
@@ -2642,7 +2646,7 @@ class Bomb extends Actor {
 
 	update() {
 		this.y = this.sy +
-			display.normalize( this.f, 0, this.mfrs, 0, this.target_y ) +
+			display.normalize( this.f, 0, this.mfrs, 0, this.tgy ) +
 			this.mfrs * game.tss;
 		this.f++;
 		if( this.f === this.mfrs ) {
@@ -2689,7 +2693,7 @@ class Harpoon extends Actor {
 				playSound( 'upl' );
 				game.addText( 'Uploaded! (+5000)', '#5E5' );
 				this.plug.is_dead = true;
-				game.addPoints( 5000 );
+				game.aPts( 5000 );
 				if( pause_name === 61 ) {
 					game.go( 0 );
 				}
@@ -2731,12 +2735,16 @@ class Harpoon extends Actor {
 	}
 
 	draw() {
-		const { x: plx, y: ply } = game.player;
+		let { x: plx, y: ply } = game.player;
 		display.drawSprite( this.sprite, this.x, this.y );
-		display.line( { x: this.x, y: this.y, x2: plx, y2: ply, color: '#EEE' } );
+		let o = { x: this.x, y: this.y, x2: plx, y2: ply, color: '#EEE' };
+		display.line( o );
 		if( this.connected ) {
-			display.line( { x: this.x + 3, y: this.y, x2: plx, y2: ply, color: '#AAF' } );
-			display.line( { x: this.x - 3, y: this.y, x2: plx, y2: ply, color: '#AAF' } );
+			o.x += 3;
+			o.color = '#AAF';
+			display.line( o );
+			o.x -= 6;
+			display.line( o );
 			if( this.f % 10 < 5 ) {
 				display.line( { x: this.x, y: this.y, x2: plx, y2: ply, color: '#333' } );
 			}
@@ -2767,7 +2775,7 @@ class Powerup extends Actor {
 				return;
 			}
 
-			if( this.name === 'pwrhp' || this.name === 'pwrlazer' || this.name === 'pwr2x' ) {
+			if( this.name !== 'pwrcoin' ) {
 				this.turn( 'l' );
 				if( Math.random() > 0.5 ) {
 					this.acc();
@@ -2785,10 +2793,7 @@ class Powerup extends Actor {
 		if( collision ) {
 			this.remv = true;
 			if( this.name === 'pwrhp' ) {
-				game.player.hp += game.player.max_hp * 0.5;
-				if( game.player.hp > game.player.max_hp ) {
-					game.player.hp = game.player.max_hp;
-				}
+				game.player.plusHP( 50 );
 				playSound( 'hp' );
 			}
 			if( this.name === 'pwrlazer' ) {
@@ -2796,15 +2801,16 @@ class Powerup extends Actor {
 				if( game.player.lzlvl > 3 ) {
 					game.player.lzlvl = 3;
 				}
-				playSound( 'special' );
+				playSound( 'sp' );
 			}
 			if( this.name === 'pwrcoin' ) {
-				game.addPoints( 1000 );
+				game.aPts( 1000 );
 				playSound( 'coin' );
 			}
 			if( this.name === 'pwr2x' ) {
+				game.addText( '2x Points!', '#EE5' );
 				game.smult *= 2;
-				playSound( 'special' );
+				playSound( 'sp' );
 			}
 		}
 	}
@@ -2862,6 +2868,9 @@ game = {
 	start() {
 		playSound( 'lvls' );
 		game.loading = true;
+
+		// the game noticibly lags while setting the terrain, so  this makes it look like a loading
+		// blac screen for 100 ms whenever it is loaded
 		setTimeout( () => {
 			pause_name = '';
 			Object.assign( game, {
@@ -3029,7 +3038,7 @@ game = {
 			let t = 'High Score ' + game.high_score;
 			drawText( t, 50, 50, { size: 25, color: 'gold' } );
 			drawText( 'PLANET: OFFLINE', 222, 400, { size: 42 } );
-			drawText( 'Press any key to start.', 222, 600, { size: 28 } );
+			drawText( 'Press any key...', 288, 600, { size: 28 } );
 			return;
 		}
 
@@ -3116,7 +3125,7 @@ game = {
 		let p = new Powerup( name, x, y, vx, vy );
 		this.actors.push( p );
 	},
-	addPoints( p ) {
+	aPts( p ) {
 		game.score += p * game.smult;
 	},
 	go( i ) {
@@ -3208,6 +3217,9 @@ game = {
 			}
 			if( k === 'escape' ) {
 				game.paused = !game.paused;
+			}
+			if( game.paused ) {
+				return;
 			}
 			if( k === 'arrowleft' ) {
 				game.player.setState( 'left' );

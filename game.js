@@ -233,21 +233,21 @@ class Actor {
 
 class Player extends Actor {
 	constructor() {
-		super( 'player' );
+		super( 'pl' );
 		this.x = 400;
 		this.y = 400;
 		this.r = 25;
-		this.max_target_y = -150;
-		this.target_y = -150;
+		this.mtgy = -150; // max target y
+		this.tgy = -150;
 		this.setState( 'default' );
 		this.lzrcd = 20; // lazer cooldown
 		this.lzfrm = 20; // lazer frame (counts cooldown)
 		this.lzlvl = 1; // lazer level
-		this.max_hp = 100;
-		this.hp = this.max_hp;
+		this.mhp = 100; //max hp
+		this.hp = this.mhp;
 		this.uplink = null;
 		this.bombs = [];
-		this.bomb_frame = 0;
+		this.bfrm = 0; //bomb frame
 	}
 	lazer() {
 		if( this.lzfrm > this.lzrcd ) {
@@ -293,10 +293,9 @@ class Player extends Actor {
 		if( this.bombs.length === 0 ) {
 			let nbombs = [ 0, 1, 2, 4 ][ game.lvln ];
 			for( let i = 0; i < nbombs; i++ ) {
-				let b = new game.Bomb( 1, this.x, this.y, this.target_y );
+				let b = new game.Bomb( 1, this.x, this.y, this.tgy );
 				this.bombs.push( b );
 			}
-			game.score -= 25;
 		}
 	}
 	harpoon() {
@@ -305,13 +304,18 @@ class Player extends Actor {
 			this.uplink = h;
 			playSound( 'har' );
 			game.actors.push( h );
-			game.score -= 100;
 		}
 	}
 	explode() {
 		if( !game.ncontrol ) {
 			playSound( 'lvlf' );
 			game.end();
+		}
+	}
+	plusHP( n ) {
+		let a = this.hp += n;
+		if( a > this.mhp ) {
+			this.hp = this.mhp;
 		}
 	}
 	update() {
@@ -327,9 +331,9 @@ class Player extends Actor {
 		} if( game.keys.arrowdown ) {
 			this.y += this.speed;
 		} else {
-			this.target_y -= 4;
-			if( this.target_y < this.max_target_y ) {
-				this.target_y = this.max_target_y;
+			this.tgy -= 4;
+			if( this.tgy < this.mtgy ) {
+				this.tgy = this.mtgy;
 			}
 		}
 		if( game.keys.z ) {
@@ -351,9 +355,9 @@ class Player extends Actor {
 		} else if( this.y > dh ) {
 			this.y = dh;
 			if( game.keys.arrowdown ) {
-				this.target_y += 4;
-				if( this.target_y > 0 ) {
-					this.target_y = 0;
+				this.tgy += 4;
+				if( this.tgy > 0 ) {
+					this.tgy = 0;
 				}
 			}
 		}
@@ -364,20 +368,20 @@ class Player extends Actor {
 		}
 
 		if( this.bombs.length ) {
-			if( this.bomb_frame <= 0 ) {
-				this.bomb_frame = 4;
+			if( this.bfrm <= 0 ) {
+				this.bfrm = 4;
 				playSound( 'bomb' );
 				game.actors.push( this.bombs.shift() );
 			} else {
-				this.bomb_frame--;
+				this.bfrm--;
 			}
 		}
 	}
 	draw() {
 		super.draw();
-		display.drawSprite( 'target', this.x, this.y + this.target_y );
+		display.drawSprite( 'target', this.x, this.y + this.tgy );
 		let hpw = 160;
-		let chpw = display.normalize( this.hp, 0, this.max_hp, 0, hpw );
+		let chpw = display.normalize( this.hp, 0, this.mhp, 0, hpw );
 		let hph = 10;
 		let hpy = dh - hph - 2;
 		let hpx = dw - hpw + hpw / 2 - 20;
@@ -398,7 +402,7 @@ class Player extends Actor {
 			c: 'blue',
 			outline: 1
 		});
-		let chpct = Math.round( this.hp * 100 / this.max_hp ) + '%';
+		let chpct = Math.round( this.hp * 100 / this.mhp ) + '%';
 		drawText( chpct, hpx - chpct.length * 6.5, hpy + 2, { size: 24, color: 'white' } );
 	}
 }
@@ -451,7 +455,7 @@ class Air extends Actor {
 	explode() {
 		super.explode();
 		playSound( 'expa' );
-		game.addPoints( this.level * 50 );
+		game.aPts( this.level * 50 );
 	}
 
 	update() {
@@ -556,7 +560,7 @@ class GroundTank extends Ground {
 		if( !game.ncontrol ) {
 			playSound( 'expg' );
 		}
-		game.addPoints( this.level * 200 );
+		game.aPts( this.level * 200 );
 	}
 }
 
@@ -582,7 +586,7 @@ class GroundCache extends Ground {
 		} else if( this.wh === '2x' ) {
 			game.addPowerup( '2x', this.x, this.y, 0, 1 );
 		}
-		game.addPoints( 100 );
+		game.aPts( 100 );
 		if( pause_name === 61 ) {
 			game.go( 1 );
 		}
@@ -711,7 +715,7 @@ class TextParticle extends Particle {
 	}
 
 	draw() {
-		drawText( this.text, this.x, this.y, { size: this.size, color: this.color } );
+		drawText( this.text, this.x, this.y, this );
 	}
 }
 
@@ -721,7 +725,7 @@ class Lazer extends Actor {
 		this.damage = 1;
 		this.vy = -10;
 		this.vx = 0;
-		this.delaying = true;
+		this.isdel = true;
 		this.delay = 0;
 		this.x_offset = 0;
 		this.sprite = 'lazer' + type;
@@ -731,13 +735,13 @@ class Lazer extends Actor {
 
 	update() {
 		this.f++;
-		if( this.delaying && this.f > this.delay ) {
+		if( this.isdel && this.f > this.delay ) {
 			const { x, y } = game.player;
-			this.delaying = false;
+			this.isdel = false;
 			this.x = x + this.x_offset;
 			this.y = y;
 			if( this.sound ) {
-				playSound( 'lazer1' );
+				playSound( 'lz' );
 			}
 		}
 		this.y += this.vy;
@@ -760,7 +764,7 @@ class Lazer extends Actor {
 	}
 
 	draw() {
-		if( !this.delaying ) {
+		if( !this.isdel ) {
 			super.draw();
 		}
 	}
@@ -805,9 +809,9 @@ class Bomb extends Actor {
 		this.x = x;
 		this.sy = y - 20;
 		this.y = y;
-		this.target_y = ty;
+		this.tgy = ty; //target y
 		this.sprite = 'bomb' + type;
-		this.mfrs = 40;
+		this.mfrs = 40; //move frames
 		this.r = 7;
 		this.expl = 'expl_bomb';
 	}
@@ -819,7 +823,7 @@ class Bomb extends Actor {
 
 	update() {
 		this.y = this.sy +
-			display.normalize( this.f, 0, this.mfrs, 0, this.target_y ) +
+			display.normalize( this.f, 0, this.mfrs, 0, this.tgy ) +
 			this.mfrs * game.tss;
 		this.f++;
 		if( this.f === this.mfrs ) {
@@ -866,7 +870,7 @@ class Harpoon extends Actor {
 				playSound( 'upl' );
 				game.addText( 'Uploaded! (+5000)', '#5E5' );
 				this.plug.is_dead = true;
-				game.addPoints( 5000 );
+				game.aPts( 5000 );
 				if( pause_name === 61 ) {
 					game.go( 0 );
 				}
@@ -908,12 +912,16 @@ class Harpoon extends Actor {
 	}
 
 	draw() {
-		const { x: plx, y: ply } = game.player;
+		let { x: plx, y: ply } = game.player;
 		display.drawSprite( this.sprite, this.x, this.y );
-		display.line( { x: this.x, y: this.y, x2: plx, y2: ply, color: '#EEE' } );
+		let o = { x: this.x, y: this.y, x2: plx, y2: ply, color: '#EEE' };
+		display.line( o );
 		if( this.connected ) {
-			display.line( { x: this.x + 3, y: this.y, x2: plx, y2: ply, color: '#AAF' } );
-			display.line( { x: this.x - 3, y: this.y, x2: plx, y2: ply, color: '#AAF' } );
+			o.x += 3;
+			o.color = '#AAF';
+			display.line( o );
+			o.x -= 6;
+			display.line( o );
 			if( this.f % 10 < 5 ) {
 				display.line( { x: this.x, y: this.y, x2: plx, y2: ply, color: '#333' } );
 			}
@@ -944,7 +952,7 @@ class Powerup extends Actor {
 				return;
 			}
 
-			if( this.name === 'pwrhp' || this.name === 'pwrlazer' || this.name === 'pwr2x' ) {
+			if( this.name !== 'pwrcoin' ) {
 				this.turn( 'l' );
 				if( Math.random() > 0.5 ) {
 					this.acc();
@@ -962,10 +970,7 @@ class Powerup extends Actor {
 		if( collision ) {
 			this.remv = true;
 			if( this.name === 'pwrhp' ) {
-				game.player.hp += game.player.max_hp * 0.5;
-				if( game.player.hp > game.player.max_hp ) {
-					game.player.hp = game.player.max_hp;
-				}
+				game.player.plusHP( 50 );
 				playSound( 'hp' );
 			}
 			if( this.name === 'pwrlazer' ) {
@@ -973,15 +978,16 @@ class Powerup extends Actor {
 				if( game.player.lzlvl > 3 ) {
 					game.player.lzlvl = 3;
 				}
-				playSound( 'special' );
+				playSound( 'sp' );
 			}
 			if( this.name === 'pwrcoin' ) {
-				game.addPoints( 1000 );
+				game.aPts( 1000 );
 				playSound( 'coin' );
 			}
 			if( this.name === 'pwr2x' ) {
+				game.addText( '2x Points!', '#EE5' );
 				game.smult *= 2;
-				playSound( 'special' );
+				playSound( 'sp' );
 			}
 		}
 	}
@@ -1039,6 +1045,9 @@ game = {
 	start() {
 		playSound( 'lvls' );
 		game.loading = true;
+
+		// the game noticibly lags while setting the terrain, so  this makes it look like a loading
+		// blac screen for 100 ms whenever it is loaded
 		setTimeout( () => {
 			pause_name = '';
 			Object.assign( game, {
@@ -1206,7 +1215,7 @@ game = {
 			let t = 'High Score ' + game.high_score;
 			drawText( t, 50, 50, { size: 25, color: 'gold' } );
 			drawText( 'PLANET: OFFLINE', 222, 400, { size: 42 } );
-			drawText( 'Press any key to start.', 222, 600, { size: 28 } );
+			drawText( 'Press any key...', 288, 600, { size: 28 } );
 			return;
 		}
 
@@ -1293,7 +1302,7 @@ game = {
 		let p = new Powerup( name, x, y, vx, vy );
 		this.actors.push( p );
 	},
-	addPoints( p ) {
+	aPts( p ) {
 		game.score += p * game.smult;
 	},
 	go( i ) {
@@ -1385,6 +1394,9 @@ game = {
 			}
 			if( k === 'escape' ) {
 				game.paused = !game.paused;
+			}
+			if( game.paused ) {
+				return;
 			}
 			if( k === 'arrowleft' ) {
 				game.player.setState( 'left' );

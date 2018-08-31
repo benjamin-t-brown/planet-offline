@@ -120,28 +120,28 @@
 		// 	let a = document.getElementById( name );
 		// 	a.load();
 		// 	a.addEventListener( 'canplaythrough', () => {
-		// 		let channels = [ a ];
+		// 		let cha = [ a ];
 		// 		for( let i = 0; i < 3; i++ ) {
-		// 			channels.push( a.cloneNode( true ) );
+		// 			cha.push( a.cloneNode( true ) );
 		// 		}
 		// 		display.sounds[ name ] = {
 		// 			cc: 0,
-		// 			channels
+		// 			cha
 		// 		};
 		// 	} );
 		// };
 		let jsfxr = window.jsfxr;
 		let loadSound = ( name, args ) => {
 			let url = jsfxr( args );
-			let channels = [];
+			let cha = [];
 			for ( let i = 0; i < 4; i++ ) {
 				let s = new Audio();
 				s.src = url;
-				channels.push( s );
+				cha.push( s );
 			}
 			display.sounds[ name ] = {
 				cc: 0,
-				channels
+				cha
 			};
 		};
 
@@ -152,7 +152,7 @@
 		loadSound( 'expg', [ 3,,0.3646,0.7897,0.2321,0.1281,,-0.3439,,,,,,,,,0.2502,-0.0041,1,,,,,0.25 ] );
 		loadSound( 'bombg', [ 3, , 0.01, 0.6031, 0.4332, 0.027, , 0.2071, , , , , , , , , , , 1, , , , , 0.25 ] );
 		loadSound( 'bullet', [ 1, 0.0054, 0.2302, , 0.2346, 0.9064, 0.1659, -0.6154, 0.0044, 0.0708, 0.0179, 0.0085, 0.066, 0.5, -0.5604, 0.0104, 0.0832, -0.0182, 0.9625, 0.0138, 0.1126, 0.088, 0.0132, 0.25 ] );
-		loadSound( 'lazer1', [ 2, 0.0054, 0.2302, , 0.2346, 0.76, , -0.6154, 0.0044, 0.0708, 0.0179, 0.0085, 0.066, 0.5, -0.5604, 0.0104, 0.0832, -0.0182, 0.9625, 0.0138, 0.1126, 0.088, 0.0132, 0.15 ] );
+		loadSound( 'lz', [ 2, 0.0054, 0.2302, , 0.2346, 0.76, , -0.6154, 0.0044, 0.0708, 0.0179, 0.0085, 0.066, 0.5, -0.5604, 0.0104, 0.0832, -0.0182, 0.9625, 0.0138, 0.1126, 0.088, 0.0132, 0.15 ] );
 		loadSound( 'upl', [ 0, , 0.26, , 0.8, 0.45, , 0.305, , , , , , 0.5555, , 0.6, , , 1, , , , , 0.25 ] );
 		loadSound( 'hp', [ 0, , 0.2084, , 0.2832, 0.5027, , -0.48, 0.6599, , , , , 0.316, , , , , 0.5663, , , , , 0.5 ] );
 		loadSound( 'blip', [ 1, , 0.1086, , 0.1316, 0.2639, , , , , , , , , , , , , 1, , , 0.1, , 0.25 ] );
@@ -161,7 +161,7 @@
 		loadSound( 'lvlf', [ 0, , 0.52, 0.25, 1, 0.27, , , , 0.47, 0.12, 0.1999, 0.14, 0.3, 0.6399, 0.552, , , 1, , 0.13, , , 0.25 ] );
 		loadSound( 'lvlc', [ 0, 0.04, 0.23, 0.19, 0.59, 0.24, , , , , , , , 0.5161, , , , , 1, , , 0.1, , 0.25 ] );
 		loadSound( 'hit', [ 3, , 0.0887, , 0.1681, 0.6516, , -0.4825, , , , , , , , , , , 1, , , 0.129, , 0.25 ] );
-		loadSound( 'special', [ 1, , 0.34, , 0.67, 0.16, , 0.4536, , , , -0.24, , , , 0.4182, , , 0.39, , , , , 0.25 ] );
+		loadSound( 'sp', [ 1, , 0.34, , 0.67, 0.16, , 0.4536, , , , -0.24, , , , 0.4182, , , 0.39, , , , , 0.25 ] );
 		loadSound( 'lvls', [ 3, 0.28, 0.31, 0.08, 0.7, 0.0081, , 0.4503, 0.0324, 0.8, 0.3, 0.62, 0.25, 0.3357, 0.1636, -0.9992, 0.06, 0.24, 0.9625, , -0.7401, , 0.0036, 0.30 ] );
 	};
 
@@ -170,8 +170,8 @@
 			return;
 		}
 		let s = display.sounds[ name ];
-		let ind = ( s && s.cc++ % s.channels.length );
-		s.channels[ ind ].play();
+		let ind = ( s && s.cc++ % s.cha.length );
+		s.cha[ ind ].play();
 	};
 
 	display.setError = function() {
@@ -347,30 +347,30 @@
 		window.app.sprites.createSprites();
 
 		let player_fs = 5;
-		display.cAnim( 'player_default', () => {
+		display.cAnim( 'pl_default', () => {
 			let a = new Animation( '', false );
 			a.s( 'p2', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_from_left', () => {
+		display.cAnim( 'pl_from_left', () => {
 			let a = new Animation( '', false );
 			a.s( 'p1', player_fs );
 			a.s( 'p2', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_from_right', () => {
+		display.cAnim( 'pl_from_right', () => {
 			let a = new Animation( '', false );
 			a.s( 'p3', player_fs );
 			a.s( 'p2', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_left', () => {
+		display.cAnim( 'pl_left', () => {
 			let a = new Animation( '', false );
 			a.s( 'p1', player_fs );
 			a.s( 'p0', player_fs );
 			return a;
 		} );
-		display.cAnim( 'player_right', () => {
+		display.cAnim( 'pl_right', () => {
 			let a = new Animation( '', false );
 			a.s( 'p3', player_fs );
 			a.s( 'p4', player_fs );
