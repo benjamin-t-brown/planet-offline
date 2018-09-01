@@ -1,20 +1,16 @@
 ( function() {
 
 	let display = {
-		canvas_id: 'c',
+		canvasid: 'c',
 		canvas: null,
 		ctx: null,
 		sprites: {},
 		frame: 0,
-		width: window.innerWidth,
-		height: window.innerHeight,
+		width: 800,
+		height: 800,
 		mute: false,
 		sounds: [],
-		animations: {},
-		transform: {
-			x: 0,
-			y: 0
-		}
+		animations: {}
 	};
 
 	class Animation {
@@ -24,7 +20,7 @@
 			this.sprites = [];
 
 			this.cf = 0;
-			this.cf_max = 0;
+			this.cfmax = 0;
 			this.cind = 0;
 			this.is_done = false;
 		}
@@ -35,13 +31,13 @@
 				name: name
 			} );
 			if ( this.sprites.length === 1 ) {
-				this.cf_max = nframes;
+				this.cfmax = nframes;
 			}
 		}
 
 		update() {
 			this.cf++;
-			if ( this.cf >= this.cf_max ) {
+			if ( this.cf >= this.cfmax ) {
 				this.cind++;
 				if ( this.cind >= this.sprites.length ) {
 					this.is_done = true;
@@ -52,7 +48,7 @@
 					}
 				}
 				this.cf = 0;
-				this.cf_max = this.sprites[ this.cind ].max_frames;
+				this.cfmax = this.sprites[ this.cind ].max_frames;
 			}
 		}
 
@@ -66,8 +62,8 @@
 		display.ctx = canvas.getContext( '2d' );
 	};
 	display.restoreCanv = function() {
-		display.canvas_id = display.canvas_id;
-		display.canvas = document.getElementById( display.canvas_id );
+		display.canvasid = display.canvasid;
+		display.canvas = document.getElementById( display.canvasid );
 		display.ctx = display.canvas.getContext( '2d' );
 		display.width = display.canvas.width;
 		display.height = display.canvas.height;
@@ -82,7 +78,7 @@
 			h
 		};
 		display.sprites[ name ] = spr;
-		display.preDrawSprite( spr );
+		display.rasterize( spr );
 		display.cAnim( name, () => {
 			let a = new Animation( name, false );
 			a.s( name, 2 );
@@ -130,9 +126,8 @@
 		// 		};
 		// 	} );
 		// };
-		let jsfxr = window.jsfxr;
 		let loadSound = ( name, args ) => {
-			let url = jsfxr( args );
+			let url = window.jsfxr( args );
 			let cha = [];
 			for ( let i = 0; i < 4; i++ ) {
 				let s = new Audio();
@@ -268,7 +263,7 @@
 		}
 	};
 
-	display.preDrawSprite = function( spr ) {
+	display.rasterize = function( spr ) {
 		let canvas = document.createElement( 'canvas' );
 		let ctx = canvas.getContext( '2d' );
 		canvas.width = spr.w || 1;
@@ -328,9 +323,9 @@
 
 	display.drawAnimation = display.drawAnim;
 
-	display.init = function( canvas_id, cb ) {
-		if ( canvas_id ) {
-			display.canvas_id = canvas_id;
+	display.init = function( canvasid, cb ) {
+		if ( canvasid ) {
+			display.canvasid = canvasid;
 			display.restoreCanv();
 		}
 		if ( display.loaded ) {
