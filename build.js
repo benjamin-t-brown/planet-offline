@@ -36,8 +36,8 @@ const rules = {
 		//cd dist && 7za a main.zip index.html -mx9 -mm=LZMA > nul
 
 		const src = fs.readFileSync( './dist/main.js' );
-		const out = `<html><head><style>body{margin:0px;overflow:hidden;background-color:gray;}</style></head>
-<body><canvas id="c" width="800" height="800" style="position:fixed;transform:translate(-50%,-50%);left:50%;top:50%"></canvas></body>
+		const out = `<html><head><style>body{margin:0px;overflow:hidden;background-color:gray;}canvas{display:block;margin:0 auto;position:fixed;height:100%;transform:translate(-50%,-50%);left:50%;top:50%}</style></head>
+<body><canvas id="c" width="800" height="800"></canvas></body>
 <footer><script>app={};</script><script>
 ${src}
 addEventListener('load',()=>{app.display.init('c',app.game.init)})
