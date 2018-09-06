@@ -929,7 +929,7 @@ else {
 } )();
 
 ( function() {
-window.app.level = "sl,275,1|sl,533,2|sl,800,3|bl,1,1|bl,279,2|bl,538,3|p,80,15|s,38,c,a,1,15|u,10,57,4|u,15,41,4|c,27,73,5,2x|g,10,65,1|g,9,41,1|g,24,81,1|g,3,94,1|c,15,105,5,coin5|c,29,107,5,coin2|u,7,114,2|u,15,126,2|g,15,116,1|g,7,125,1|g,28,123,1|c,19,144,10,hp|u,13,178,4|g,25,185,1|g,3,208,1|g,10,226,1|p,257,20|u,5,241,2|u,28,243,2|g,11,246,2|g,29,240,1|c,20,249,5,coin3|s,62,c,a,1,15|s,70,c,a,1,15|s,77,c,a,1,15|w,78,5,s,78,c,a,1,15|s,89,l,a,1,15|s,96,r,a,1,10|s,111,l,a,1,10|w,78,5,s,78,l,a,1,5|w,78,10,s,78,c,a,1,20|s,128,r,a,1,10|s,147,r,a,1,10|s,186,a,a,1,26|s,208,r,a,1,20|s,223,r,a,1,20|s,238,r,a,1,20|s,255,c,a,1,10|s,255,r,a,1,10|s,255,l,a,1,10|s,216,l,a,1,10|s,232,l,a,1,10|s,199,l,a,1,10|s,163,c,a,1,10|s,168,l,a,1,10|s,139,l,a,1,15|c,12,193,5,2x|c,23,228,5,hp|s,50,c,a,1,15|u,25,14,3|w,255,8,s,255,c,a,1,15|t,20,15,  Press 'C' to uplink.|t,1,15,Press 'X' to bomb ground targets.|t,9,5, Hold 'Z' to shoot air targets.|c,20,305,10,lazer|g,22,326,2|g,9,345,2|g,13,355,2|g,22,366,2|g,14,380,2|g,20,380,1|c,25,384,10,hp|u,19,366,4|u,16,355,4|u,12,345,4|u,14,376,5|g,8,400,2|g,22,410,2|g,10,424,2|g,21,441,2|g,8,464,2|g,11,486,2|u,26,400,4|u,9,411,4|u,18,429,4|u,11,441,4|u,12,463,4|u,20,463,4|u,9,496,4|c,5,509,10,hp|c,10,512,10,2x|c,16,509,10,hp|c,21,512,10,coin5|p,525,10|g,24,464,1|p,475,20|s,319,l,a,1,21|s,333,c,a,1,25|s,350,a,a,2,25|s,369,a,a,1,20|p,390,15|s,388,c,a,2,10|w,388,5,s,388,a,a,1,25|s,400,c,a,2,10|s,417,l,a,2,25|s,441,r,a,2,15|s,473,a,a,2,25|w,473,5,s,473,r,a,1,15|w,473,5,s,473,l,a,1,15|w,473,15,s,473,r,a,2,10|w,486,10,s,486,c,a,2,15|w,496,10,s,496,c,a,2,15|p,18,61|c,8,14,5,coin3|g,28,593,2|g,4,787,3|g,15,783,2|g,27,787,3|u,4,776,5|u,10,749,5|u,8,759,5|u,8,707,5|u,25,654,5|u,15,560,5|c,20,560,10,lazer|c,28,589,10,2x|c,16,602,10,coin6|g,16,598,3|g,4,656,3|g,8,669,3|u,25,618,5|u,7,634,5|u,12,685,5|g,27,692,3|c,29,682,10,coin4|c,19,696,10,coin4|c,3,692,10,2x|u,25,704,5|g,19,715,2|g,2,720,2|g,3,739,2|g,9,744,2|u,15,776,5|p,794,43|s,577,a,a,3,8|s,590,a,a,4,6|s,604,l,a,2,12|s,622,c,a,4,10|s,650,a,a,3,20|s,671,c,a,4,10|s,696,c,a,4,10|s,731,c,a,4,10|s,756,c,a,4,10|s,768,a,a,4,20|s,619,l,a,3,9|s,676,l,a,3,9|s,708,l,a,3,9|s,744,l,a,3,9|s,634,r,a,3,18|s,688,r,a,3,9|s,731,r,a,3,9|s,756,r,a,3,9|s,791,a,a,4,10|w,791,5,s,791,a,a,4,8|w,791,8,s,791,a,a,4,12|w,791,12,s,791,a,a,4,12|w,790,20,s,790,a,a,4,50|w,791,20,s,791,a,a,4,15|w,790,20,s,790,l,a,4,20|w,791,30,s,791,c,a,4,10|u,27,776,5|s,685,a,a,4,15|s,662,a,a,4,15|t,13,9,Arrows to move.|c,11,740,10,hp|c,5,664,10,hp|c,6,782,15,coin10|c,25,782,15,coin10|s,155,c,a,1,10";
+window.app.level = "sl,275,1|sl,533,2|sl,800,3|bl,1,1|bl,279,2|bl,538,3|p,80,15|s,38,c,a,1,15|u,10,57,4|u,15,41,4|c,27,73,5,2x|g,10,65,1|g,9,41,1|g,24,81,1|g,3,94,1|c,15,105,5,coin5|c,29,107,5,coin2|u,7,114,2|u,15,126,2|g,15,116,1|g,7,125,1|g,28,123,1|c,19,144,10,hp|u,13,178,4|g,25,185,1|g,3,208,1|g,10,226,1|p,257,20|u,5,241,2|u,28,243,2|g,11,246,2|g,29,240,1|c,20,249,5,coin3|s,62,c,a,1,15|s,70,c,a,1,15|s,77,c,a,1,15|w,78,5,s,78,c,a,1,15|s,89,l,a,1,15|s,96,r,a,1,10|s,111,l,a,1,10|w,78,5,s,78,l,a,1,5|w,78,10,s,78,c,a,1,20|s,128,r,a,1,10|s,147,r,a,1,10|s,186,a,a,1,26|s,208,r,a,1,20|s,223,r,a,1,20|s,238,r,a,1,20|s,255,c,a,1,10|s,255,r,a,1,10|s,255,l,a,1,10|s,216,l,a,1,10|s,232,l,a,1,10|s,199,l,a,1,10|s,163,c,a,1,10|s,168,l,a,1,10|s,139,l,a,1,15|c,12,193,5,2x|c,23,228,5,hp|s,50,c,a,1,15|u,25,14,3|w,255,8,s,255,c,a,1,15|t,20,15,  Press c (k) to uplink.|t,1,15,Press x (j) to bomb ground targets.|t,9,5, Hold z (wyq) to shoot air targets.|c,20,305,10,lazer|g,22,326,2|g,9,345,2|g,13,355,2|g,22,366,2|g,14,380,2|g,20,380,1|c,25,384,10,hp|u,19,366,4|u,16,355,4|u,12,345,4|u,14,376,5|g,8,400,2|g,22,410,2|g,10,424,2|g,21,441,2|g,8,464,2|g,11,486,2|u,26,400,4|u,9,411,4|u,18,429,4|u,11,441,4|u,12,463,4|u,20,463,4|u,9,496,4|c,5,509,10,hp|c,10,512,10,2x|c,16,509,10,hp|c,21,512,10,coin5|p,525,10|g,24,464,1|p,475,20|s,319,l,a,1,21|s,333,c,a,1,25|s,350,a,a,2,25|s,369,a,a,1,20|p,390,15|s,388,c,a,2,10|w,388,5,s,388,a,a,1,25|s,400,c,a,2,10|s,417,l,a,2,25|s,441,r,a,2,15|s,473,a,a,2,25|w,473,5,s,473,r,a,1,15|w,473,5,s,473,l,a,1,15|w,473,15,s,473,r,a,2,10|w,486,10,s,486,c,a,2,15|w,496,10,s,496,c,a,2,15|p,18,91|c,8,14,5,coin3|g,28,593,2|g,4,787,3|g,15,783,2|g,27,787,3|u,4,776,5|u,10,749,5|u,8,759,5|u,8,707,5|u,25,654,5|u,15,560,5|c,20,560,10,lazer|c,28,589,10,2x|c,16,602,10,coin6|g,16,598,3|g,4,656,3|g,8,669,3|u,25,618,5|u,7,634,5|u,12,685,5|g,27,692,3|c,29,682,10,coin4|c,19,696,10,coin4|c,3,692,10,2x|u,25,704,5|g,19,715,2|g,2,720,2|g,3,739,2|g,9,744,2|u,15,776,5|p,794,43|s,577,a,a,3,8|s,590,a,a,4,6|s,604,l,a,2,12|s,622,c,a,4,10|s,650,a,a,3,20|s,671,c,a,4,10|s,696,c,a,4,10|s,731,c,a,4,10|s,756,c,a,4,10|s,768,a,a,4,20|s,619,l,a,3,9|s,676,l,a,3,9|s,708,l,a,3,9|s,744,l,a,3,9|s,634,r,a,3,18|s,688,r,a,3,9|s,731,r,a,3,9|s,756,r,a,3,9|s,791,a,a,4,10|w,791,5,s,791,a,a,4,8|w,791,8,s,791,a,a,4,12|w,791,12,s,791,a,a,4,12|w,790,20,s,790,a,a,4,50|w,791,20,s,791,a,a,4,15|w,790,20,s,790,l,a,4,20|w,791,30,s,791,c,a,4,10|u,27,776,5|s,685,a,a,4,15|s,662,a,a,4,15|t,13,9,Arrows to move.|c,11,740,10,hp|c,5,664,10,hp|c,6,782,15,coin10|c,25,782,15,coin10|s,155,c,a,1,10|s,797,a,a,4,25";
 } )();
 
 ( function() {
@@ -1660,6 +1660,18 @@ terrain.draw = function( offset ) {
 				r: 7
 			} ], 12, 12 );
 
+			cs( 'btgt', 3, [ {
+				c: '#C44',
+				rot: 45,
+				w: 2,
+				h: 14
+			}, {
+				c: '#C44',
+				rot: -45,
+				w: 2,
+				h: 14
+			} ], 50, 50 );
+
 			const c1 = [
 				'#111',
 				'#555',
@@ -1861,15 +1873,15 @@ class Actor {
 		this.ax = 0; // turning velocity, in degrees per frame
 		this.maxax = 1; // max turning velocity, in degrees per frame
 		this.hp = 1; // hit points
-		this.accel = 0.2; // rate of acceleration, in pixels per frame
-		this.deccel = 0.05; // rate of decelleration if not accelerating, in pixels per frame
+		this.ac = 0.2; // rate of acceleration, in pixels per frame
+		this.dc = 0.05; // rate of decelleration if not accelerating, in pixels per frame
 		this.hed = 0; //heading, in degrees
 		this.isac = false; // is_accelerating
 		this.remv = false; // if true, this actor will be removed by the game on the current frame
 		this.state = ''; // animation state, used only by player
 		this.expl = 'expl_air'; // explode animation name
 		this.anim = null; // actor's animation, if it has one
-		this.sprite = null; // actor's sprite, if it has one
+		this.spr = null; // actor's sprite, if it has one
 		this.ai = function(){}; // the function that determines what this actor does every frame
 	}
 
@@ -1938,39 +1950,39 @@ class Actor {
 		}
 	}
 
-	// accelerate, up to max speed at intervals of this.accel
+	// accelerate, up to max speed at intervals of this.ac
 	acc() {
 		let { x: maxvx, y: maxvy } = display.hedToVec( this.hed, this.mxsd );
 
 		if( this.vx < maxvx ){
-			this.vx += this.accel;
+			this.vx += this.ac;
 		} else if( this.vx > maxvx ){
-			this.vx -= this.accel;
+			this.vx -= this.ac;
 		}
 
 		if( this.vy < maxvy ){
-			this.vy += this.accel;
+			this.vy += this.ac;
 		} else if( this.vy > maxvy ){
-			this.vy -= this.accel;
+			this.vy -= this.ac;
 		}
 		this.isac = true;
 	}
 
-	// deccelerate, as if air friction was slowing this actor down at intervals of this.deccel
+	// deccelerate, as if air friction was slowing this actor down at intervals of this.dc
 	decc() {
 		let maxvx = 0.0;
 		let maxvy = 0.0;
 
 		if( this.vx < maxvx ){
-			this.vx += this.deccel;
+			this.vx += this.dc;
 		} else if( this.vx > maxvx ){
-			this.vx -= this.deccel;
+			this.vx -= this.dc;
 		}
 
 		if( this.vy < maxvy ){
-			this.vy += this.deccel;
+			this.vy += this.dc;
 		} else if( this.vy > maxvy ){
-			this.vy -= this.deccel;
+			this.vy -= this.dc;
 		}
 
 		if( Math.abs( this.vx ) < 0.001 ) {
@@ -1983,7 +1995,7 @@ class Actor {
 
 	// collides, does this actor collide with the given circle?
 	coll( { x, y, r } ) {
-		if( game.ncontrol ) {
+		if( game.nc ) {
 			return false;
 		}
 		let d = display.distance( x, y, this.x, this.y );
@@ -2010,7 +2022,7 @@ class Actor {
 			let { x, y } = display.hedToVec( this.hed, 25 );
 			b.x = this.x + x;
 			b.y = this.y + y;
-			game.actors.push( b );
+			game.a.push( b );
 			game.addPar( 'flash', b.x, b.y ).hed = this.hed;
 			playSound( 'bullet' );
 		};
@@ -2031,7 +2043,7 @@ class Actor {
 	}
 
 	update() {
-		if( this.ai && !game.ncontrol ) {
+		if( this.ai && !game.nc ) {
 			this.ai();
 		}
 
@@ -2055,8 +2067,8 @@ class Actor {
 	draw() {
 		if( this.anim ) {
 			display.drawAnim( this.anim, this.x, this.y, 1, this.hed );
-		} else if( this.sprite ) {
-			display.drawSprite( this.sprite, this.x, this.y );
+		} else if( this.spr ) {
+			display.drawSprite( this.spr, this.x, this.y );
 		}
 	}
 }
@@ -2094,7 +2106,7 @@ class Player extends Actor {
 					l.delay = l2.delay = i * 3;
 					l.x_offset = -5;
 					l2.x_offset = 5;
-					game.actors.push( l, l2 );
+					game.a.push( l, l2 );
 				}
 			} else if( this.lzlvl === 2 ) {
 				for( let i = 0; i < 4; i++ ) {
@@ -2104,7 +2116,7 @@ class Player extends Actor {
 						l.damage = 3;
 						l.delay = i * 3;
 						l.x_offset = x;
-						game.actors.push( l );
+						game.a.push( l );
 					}
 				}
 			} else if( this.lzlvl === 3 ) {
@@ -2115,7 +2127,7 @@ class Player extends Actor {
 						l.delay = j * 3;
 						l.damage = 5;
 						l.x_offset = l.vx;
-						game.actors.push( l );
+						game.a.push( l );
 					}
 				}
 			}
@@ -2136,13 +2148,13 @@ class Player extends Actor {
 			let h = new game.Harpoon( 1, this.x, this.y );
 			this.uplink = h;
 			playSound( 'har' );
-			game.actors.push( h );
+			game.a.push( h );
 		}
 	}
 
 	// If the player explodes, the game is over
 	explode() {
-		if( !game.ncontrol ) {
+		if( !game.nc ) {
 			playSound( 'lvlf' );
 			game.end();
 		}
@@ -2208,7 +2220,7 @@ class Player extends Actor {
 			if( this.bfrm <= 0 ) {
 				this.bfrm = 4;
 				playSound( 'bomb' );
-				game.actors.push( this.bombs.shift() );
+				game.a.push( this.bombs.shift() );
 			} else {
 				this.bfrm--;
 			}
@@ -2216,7 +2228,7 @@ class Player extends Actor {
 	}
 	draw() {
 		super.draw();
-		display.drawSprite( 'target', this.x, this.y + this.tgy );
+		display.drawSprite( 'target', this.x, this.y + this.tgy - 16 );
 
 		// Drawing the hp bar in here saves like maybe 4 bytes I think
 		let hpw = 160;
@@ -2250,7 +2262,7 @@ class Player extends Actor {
 class Air extends Actor {
 	constructor( name ) {
 		super( name );
-		this.sprite = name;
+		this.spr = name;
 		this.expl = 'expl_air';
 		this.level = parseInt( name.slice( -1 ) );
 
@@ -2260,7 +2272,7 @@ class Air extends Actor {
 		this.hp = [ 0, 1, 5, 15, 20 ][ this.level ];
 		this.maxax = [ 0, 1, 1, 1.5, 2 ][ this.level ];
 		this.ai = () => {
-			let pl = game.player;
+			let pl = game.pl;
 
 			if( this.f > 7 * 60 ) {
 				this.hed = 180;
@@ -2302,12 +2314,12 @@ class Air extends Actor {
 
 	update() {
 		super.update();
-		let pl = game.player;
+		let pl = game.pl;
 		let collision = this.coll( { x: pl.x, y: pl.y, r: sprites.pl_sz } );
 		if( collision ) {
 			playSound( 'hit' );
 			this.explode();
-			game.player.damage( this.dmg );
+			game.pl.damage( this.dmg );
 		}
 	}
 }
@@ -2321,9 +2333,9 @@ class Ground extends Actor {
 		this.h = 32 * 3;
 		this.x = x * 25;
 		this.r = this.w / 2;
-		this.sprite = name;
+		this.spr = name;
 		this.level = parseInt( name.slice( -1 ) );
-		this.deadsprite = 'grounddead';
+		this.dspr = 'grounddead';
 		//this.expl = 'expl_ground';
 		this.anim = display.getAnim( name );
 		this.maxax = 2;
@@ -2337,7 +2349,7 @@ class Ground extends Actor {
 		for( let i = 0; i < 5; i++ ) {
 			game.addPar( this.expl, this.x - v / 2 + Math.random() * v, this.y - v / 2 + Math.random() * v );
 		}
-		this.anim = display.getAnim( this.deadsprite );
+		this.anim = display.getAnim( this.dspr );
 		this.dead = true;
 	}
 
@@ -2380,8 +2392,8 @@ class Ground extends Actor {
 			let y = this.getY();
 			let x = this.tx * 25;
 			display.drawAnim( this.anim, x, y );
-			if( !this.dead && this.turret_anim ) {
-				display.drawAnim( this.turret_anim, x, y, 1, this.hed );
+			if( !this.dead && this.tranim ) {
+				display.drawAnim( this.tranim, x, y, 1, this.hed );
 			}
 		}
 	}
@@ -2390,7 +2402,7 @@ class Ground extends Actor {
 class GroundTank extends Ground {
 	constructor( name, x, y ) {
 		super( name, x, y );
-		this.turret_anim = display.getAnim( 'turret' + this.level );
+		this.tranim = display.getAnim( 'turret' + this.level );
 		this.hp = [ 0, 6, 12, 16 ][ this.level ];
 
 		// number of frames before turret can fire.  Theres this weird bug that happens
@@ -2398,7 +2410,7 @@ class GroundTank extends Ground {
 		// liked that mechanic enough that I never bothered trying to fix it
 		this.firerate = [ 0, 170, 130, 100 ][ this.level ];
 		this.ai = () => {
-			let pl = game.player;
+			let pl = game.pl;
 			if( !this.dead && this.getY() > 50 && this.getY() < dh ) {
 				this.turnTowards( pl );
 				let dh = Math.abs( this.hed - this.getHedTo( pl ) );
@@ -2413,7 +2425,7 @@ class GroundTank extends Ground {
 
 	explode() {
 		super.explode();
-		if( !game.ncontrol ) {
+		if( !game.nc ) {
 			playSound( 'expg' );
 		}
 		game.aPts( this.level * 200 );
@@ -2424,7 +2436,7 @@ class GroundCache extends Ground {
 	constructor( x, y, hp, what ) {
 		super( 'cache', x, y );
 		this.hp = hp;
-		this.deadsprite = 'cachedead';
+		this.dspr = 'cachedead';
 		this.wh = what;
 	}
 
@@ -2434,8 +2446,9 @@ class GroundCache extends Ground {
 			game.addPowerup( 'hp', this.x, this.y, 0, 1);
 		} else if( this.wh.indexOf( 'coin' ) > -1 ) {
 			let amt = parseInt( this.wh.slice( 4 ) );
+			let r = Math.random;
 			for( let i = 0; i < amt; i++ ) {
-				game.addPowerup( 'coin', this.x, this.y, Math.random() * 6 - 3, Math.random() * 6 - 3 );
+				game.addPowerup( 'coin', this.x, this.y, r() * 6 - 3, r() * 6 - 3 );
 			}
 		} else if( this.wh === 'lazer' ) {
 			game.addPowerup( 'lazer', this.x, this.y, 0, 1 );
@@ -2443,7 +2456,7 @@ class GroundCache extends Ground {
 			game.addPowerup( '2x', this.x, this.y, 0, 1 );
 		}
 		game.aPts( 100 );
-		if( pause_name === 61 ) {
+		if( pause_name === 91 ) {
 			game.go( 1 );
 		}
 	}
@@ -2456,27 +2469,27 @@ class GameControl extends Ground {
 		this.level = 1; // spawn level
 		this.amt = 5; // spawn amount
 		this.wait = 0; // time to wait before spawning
-		this.pause_seconds = 0; //number of seconds to pause scrolling
-		this.begin_level = 0; //index of the beginning of the level this GameControl represents
-		this.end_level = 0; //index of the end of level this GameControl represents
+		this.pscds = 0; //number of seconds to pause scrolling
+		this.blvl = 0; //index of the beginning of the level this GameControl represents
+		this.elvl = 0; //index of the end of level this GameControl represents
 	}
 
 	update() {
-		if( this.isVisible() ) {
+		if( this.isVisible() && !game.nc ) {
 			this.remv = true;
-			if( this.pause_seconds ) { // pause control
-				pause_name = this.pause_seconds;
+			if( this.pscds ) { // pause control
+				pause_name = this.pscds;
 				game.tss = 0;
 				game.setCB( () => {
 					game.tss = TSS;
-				}, this.pause_seconds * 60, true );
+				}, this.pscds * 60, true );
 			} else if( this.wait ) { // wait then spawn control
 				game.setCB( () => {
 					for( let i = 0; i < this.amt; i++ ) {
 						game.spawns.push( this.loc + ',air' + this.level );
 					}
 				}, this.wait * 60, true );
-			} else if( this.end_level ) { // end level control
+			} else if( this.elvl ) { // end level control
 				game.endLevel();
 			} else { // spawn control
 				for( let i = 0; i < this.amt; i++ ) {
@@ -2546,7 +2559,7 @@ class TextParticle extends Particle {
 		this.text = text;
 		this.vy = -1;
 		this.color = '#FFF';
-		this.deccel = 0;
+		this.dc = 0;
 		this.mfrs = 60;
 		this.is_ground = is_ground || false;
 		this.size = 30;
@@ -2584,7 +2597,7 @@ class Lazer extends Actor {
 		this.isdel = true; // is delayed, will only display/update as soon as this.f > this.delay
 		this.delay = 0;
 		this.x_offset = 0;
-		this.sprite = 'lazer' + type;
+		this.spr = 'lazer' + type;
 		this.expl = 'expl_lazer';
 
 		// if all lazers had sound, the game would run out of channels rly fast (there's a lot of lazers on the screen at once)
@@ -2594,7 +2607,7 @@ class Lazer extends Actor {
 	update() {
 		this.f++;
 		if( this.isdel && this.f > this.delay ) {
-			const { x, y } = game.player;
+			const { x, y } = game.pl;
 			this.isdel = false;
 			this.x = x + this.x_offset;
 			this.y = y;
@@ -2604,8 +2617,8 @@ class Lazer extends Actor {
 		}
 		this.y += this.vy;
 		this.x += this.vx;
-		for( let i = 0; i < game.actors.length; i++ ) {
-			let act = game.actors[ i ];
+		for( let i = 0; i < game.a.length; i++ ) {
+			let act = game.a[ i ];
 			if( act instanceof Air ) {
 				let collision = this.coll( act );
 				if( collision ) {
@@ -2633,10 +2646,10 @@ class Lazer extends Actor {
 class Bullet extends Actor {
 	constructor( type, hed ) {
 		super( 'bullet_' + type );
-		this.sprite = 'bullet' + type;
+		this.spr = 'bullet' + type;
 		this.hed = hed;
 		this.mxsd = 4;
-		this.accel = 1;
+		this.ac = 1;
 		this.r = 6;
 		let { x, y } = display.hedToVec( hed, this.mxsd );
 		this.vx = x;
@@ -2654,10 +2667,10 @@ class Bullet extends Actor {
 		this.ai();
 		this.x += this.vx;
 		this.y += this.vy;
-		let collision = this.coll( game.player );
+		let collision = this.coll( game.pl );
 		if( collision ) {
 			playSound( 'hit' );
-			game.player.damage( this.dmg );
+			game.pl.damage( this.dmg );
 			this.explode();
 		}
 	}
@@ -2670,7 +2683,7 @@ class Bomb extends Actor {
 		this.sy = y - 20;
 		this.y = y;
 		this.tgy = ty; //target y
-		this.sprite = 'bomb' + type;
+		this.spr = 'bomb' + type;
 		this.mfrs = 40; //move frames
 		this.r = 7;
 		this.expl = 'expl_bomb';
@@ -2687,8 +2700,8 @@ class Bomb extends Actor {
 			this.mfrs * game.tss;
 		this.f++;
 		if( this.f === this.mfrs ) {
-			for( let i = 0; i < game.actors.length; i++ ) {
-				let act = game.actors[ i ];
+			for( let i = 0; i < game.a.length; i++ ) {
+				let act = game.a[ i ];
 				if( ( act instanceof GroundTank || act instanceof GroundCache ) && !act.dead ) {
 					let collision = this.coll( act );
 					if( collision ) {
@@ -2702,6 +2715,11 @@ class Bomb extends Actor {
 			this.explode();
 		}
 	}
+
+	draw() {
+		super.draw();
+		display.drawSprite( 'btgt', this.x, this.sy + this.tgy + this.f * game.tss );
+	}
 }
 
 class Harpoon extends Actor {
@@ -2709,29 +2727,29 @@ class Harpoon extends Actor {
 		super( 'harpoon_' + type );
 		this.x = x;
 		this.y = y;
-		this.sprite = 'harpoon';
+		this.spr = 'harpoon';
 		this.mfrs = 40;
 		this.r = 7;
 		this.vy = 5;
 		this.expl = 'expl_bomb';
-		this.connected = false;
+		this.cn = false;
 		this.upfrs = 120;
 		this.maxdist = 300;
 		this.plug = null;
 	}
 
 	update() {
-		let pl = game.player;
+		let pl = game.pl;
 		this.f++;
 		this.y += this.vy;
 		this.x += this.vx;
 		if( this.f === this.mfrs ) {
-			if( this.connected ) {
+			if( this.cn ) {
 				playSound( 'upl' );
 				game.addText( 'Uploaded! (+5000)', '#5E5' );
 				this.plug.dead = true;
 				game.aPts( 5000 );
-				if( pause_name === 61 ) {
+				if( pause_name === 91 ) {
 					game.go( 0 );
 				}
 			}
@@ -2739,7 +2757,7 @@ class Harpoon extends Actor {
 			return;
 		}
 
-		if ( this.connected ) {
+		if ( this.cn ) {
 			this.y += game.tss;
 			let dist = display.distance( this.x, this.y, pl.x, pl.y );
 			if( this.f % 20 === 0 ) {
@@ -2752,13 +2770,13 @@ class Harpoon extends Actor {
 				game.addText( 'Disconnect!', '#E55' );
 			}
 		} else {
-			for( let i = 0; i < game.actors.length; i++ ) {
-				let act = game.actors[ i ];
+			for( let i = 0; i < game.a.length; i++ ) {
+				let act = game.a[ i ];
 				if( act instanceof Plug && !act.dead ) {
 					let collision = this.coll( act );
 					if( collision ) {
 						game.addText( 'Uploading...' );
-						this.connected = true;
+						this.cn = true;
 						this.vx = this.vy = this.f = 0;
 						this.x = act.x;
 						this.y = act.y;
@@ -2772,11 +2790,11 @@ class Harpoon extends Actor {
 	}
 
 	draw() {
-		let { x: plx, y: ply } = game.player;
-		display.drawSprite( this.sprite, this.x, this.y );
+		let { x: plx, y: ply } = game.pl;
+		display.drawSprite( this.spr, this.x, this.y );
 		let o = { x: this.x, y: this.y, x2: plx, y2: ply, color: '#EEE' };
 		display.line( o );
-		if( this.connected ) {
+		if( this.cn ) {
 			o.x += 3;
 			o.color = '#AAF';
 			display.line( o );
@@ -2799,12 +2817,12 @@ class Powerup extends Actor {
 		this.vy = vy;
 		this.anim = display.getAnim( 'pwr' + name );
 		this.mfrs = 60 * 6;
-		this.accel = 0.2;
+		this.ac = 0.2;
 		this.maxax = 3;
 		this.mxsd = 8;
 		this.r = 15;
 		this.ai = () => {
-			let pl = game.player;
+			let pl = game.pl;
 			let dist = display.distance( this.x, this.y, pl.x, pl.y );
 			if( dist < 100 ) {
 				this.pointAt( pl );
@@ -2826,17 +2844,17 @@ class Powerup extends Actor {
 		if( this.f === this.mfrs ) {
 			this.remv = true;
 		}
-		let collision = this.coll( game.player );
+		let collision = this.coll( game.pl );
 		if( collision ) {
 			this.remv = true;
 			if( this.name === 'pwrhp' ) {
-				game.player.plusHP( 50 );
+				game.pl.plusHP( 50 );
 				playSound( 'hp' );
 			}
 			if( this.name === 'pwrlazer' ) {
-				game.player.lzlvl++;
-				if( game.player.lzlvl > 3 ) {
-					game.player.lzlvl = 3;
+				game.pl.lzlvl++;
+				if( game.pl.lzlvl > 3 ) {
+					game.pl.lzlvl = 3;
 				}
 				playSound( 'sp' );
 			}
@@ -2872,9 +2890,9 @@ game = {
 
 	// commented these out to save space because they are redefined in 'start', and are not
 	// necessary for initialization
-	// actors: [],
+	// a: [],
 	// paused: false,
-	// player: null,
+	// pl: null,
 	// level: null,
 	// lvln: 1,
 	// level_frame: 0,
@@ -2882,15 +2900,15 @@ game = {
 	// tyoff: 0,
 	// tss: TSS,
 	// spawns: [],
-	// spawn_frame: 0,
+	// spfr: 0,
 	// fopac: 1.0,
-	// ncontrol: false,
+	// nc: false,
 	// started: false,
 	// loading: false,
 	// hs: false,
 	// vic: false,
 
-	high_score: ( ls && ls.getItem( 'score' ) ) || 0,
+	hscore: ( ls && ls.getItem( 'score' ) ) || 0,
 	score: 0,
 	smult: 1,
 
@@ -2920,12 +2938,12 @@ game = {
 				paused: 0,
 				scrolling: 1,
 				lvln: 1,
-				actors: [],
+				a: [],
 				spawns: [],
-				player: new Player(),
+				pl: new Player(),
 				score: 0,
 				smult: 1,
-				spawn_frame: 0,
+				spfr: 0,
 				tss: TSS,
 				i: null
 			} );
@@ -2937,10 +2955,10 @@ game = {
 
 	// Move the "camera" (the terrain offset) to the position at the start of the level number given
 	camToLvl( lvln ) {
-		let c = game.actors.reduce( ( prev, c ) => {
+		let c = game.a.reduce( ( prev, c ) => {
 			if( prev ) {
 				return prev;
-			} else if( c instanceof GameControl && c.begin_level === lvln+'' ) {
+			} else if( c instanceof GameControl && c.blvl === lvln+'' ) {
 				return c;
 			} else {
 				return null;
@@ -2956,13 +2974,13 @@ game = {
 	end( vic ) {
 		game.cbs = [];
 		game.cbs_pll = [];
-		game.ncontrol = true;
+		game.nc = true;
 		let v = 50;
 		let r = Math.random;
-		let p = game.player;
+		let p = game.pl;
 		if( vic ) {
 			playSound( 'lvlc' );
-			game.actors.forEach( ( a ) => {
+			game.a.forEach( ( a ) => {
 				a instanceof GroundTank && a.explode();
 			} );
 			game.vic = true;
@@ -2973,15 +2991,15 @@ game = {
 			}
 		}
 		game.fade( false );
-		if( game.score > game.high_score ) {
+		if( game.score > game.hscore ) {
 			playSound( 'upl' );
-			game.high_score = game.score;
+			game.hscore = game.score;
 			ls && ls.setItem( 'score', game.score );
 			game.hs = true;
 		}
 		game.setCB( () => {
 			game.hs = false;
-			game.ncontrol = false;
+			game.nc = false;
 			game.started = false;
 			game.vic = false;
 		}, 60 );
@@ -3034,7 +3052,7 @@ game = {
 			return;
 		}
 
-		if( !game.ncontrol || ( game.ncontrol && display.frame % 3 === 0 ) ) {
+		if( !game.nc || ( game.nc && display.frame % 3 === 0 ) ) {
 			game.update();
 			display.clearScreen();
 			game.draw();
@@ -3062,12 +3080,12 @@ game = {
 		if( !game.started ) {
 			return;
 		}
-		game.player.update();
-		for( let i = 0; i < game.actors.length; i++ ) {
-			let act = game.actors[ i ];
+		game.pl.update();
+		for( let i = 0; i < game.a.length; i++ ) {
+			let act = game.a[ i ];
 			act.update();
 			if( act.remv ) {
-				game.actors.splice( i, 1 );
+				game.a.splice( i, 1 );
 				i--;
 			}
 		}
@@ -3086,7 +3104,7 @@ game = {
 			return;
 		}
 		if( !game.started ) {
-			let t = 'High Score ' + game.high_score;
+			let t = 'High Score ' + game.hscore;
 			drawText( t, 50, 50, { size: 25, color: 'gold' } );
 			drawText( 'PLANET: OFFLINE', 222, 400, { size: 42 } );
 			drawText( 'Press any key...', 288, 600, { size: 28 } );
@@ -3094,8 +3112,8 @@ game = {
 		}
 
 		terrain.draw( game.tyoff );
-		for( let i = 0; i < game.actors.length; i++ ) {
-			let act = game.actors[ i ];
+		for( let i = 0; i < game.a.length; i++ ) {
+			let act = game.a[ i ];
 			act.draw();
 		}
 
@@ -3108,8 +3126,8 @@ game = {
 		if( game.vic ) {
 			drawText( 'VICTORY!', 307, 220 + Math.random() * 3, { size: 42, c: 'green' } );
 		}
-		if( !game.ncontrol ) {
-			game.player.draw();
+		if( !game.nc ) {
+			game.pl.draw();
 		}
 
 		drawText( 'ESC to pause, "m" to mute', 20, 20, { size: 16 } );
@@ -3123,10 +3141,10 @@ game = {
 	},
 	spawn() {
 		if( game.spawns.length === 0 ) {
-			game.spawn_frame = 0;
+			game.spfr = 0;
 			return;
 		}
-		if( game.spawn_frame >= 10 ) {
+		if( game.spfr >= 10 ) {
 			let spawn_str = game.spawns.shift();
 			let location = spawn_str.split( ',' )[ 0 ];
 			let name = spawn_str.split( ',' )[ 1 ];
@@ -3147,10 +3165,10 @@ game = {
 				b = 750;
 			}
 			air.x = display.randbtwn( a, b );
-			game.actors.push( air );
-			game.spawn_frame = 0;
+			game.a.push( air );
+			game.spfr = 0;
 		} else {
-			game.spawn_frame++;
+			game.spfr++;
 		}
 	},
 	setCB( cb, n, is_pll ) {
@@ -3162,19 +3180,19 @@ game = {
 	},
 	addPar( anim_name, x, y, is_ground ) {
 		let p = new ( is_ground ? ParticleGround : Particle )( anim_name, x, y );
-		game.actors.push( p );
+		game.a.push( p );
 		return p;
 	},
 	addText( text, color ) {
 		color = color || '#FFF';
 		let p = new TextParticle( text, dw / 2 - text.length * 7, 90 );
 		p.color = color;
-		game.actors.push( p );
+		game.a.push( p );
 		return p;
 	},
 	addPowerup( name, x, y, vx, vy ) {
 		let p = new Powerup( name, x, y, vx, vy );
-		this.actors.push( p );
+		this.a.push( p );
 	},
 	aPts( p ) {
 		game.score += p * game.smult;
@@ -3207,19 +3225,19 @@ game = {
 				s.type = arr[ 6 ];
 				s.level = arr[ 7 ];
 				s.amt = arr[ 8 ];
-				game.actors.push( s );
+				game.a.push( s );
 			},
 			u: ( arr ) => { //uplink
-				game.actors.push( new Plug( 'plug', pInt( arr[ 1 ] ), pInt( arr[ 2 ] ) , arr[ 3 ] ) );
+				game.a.push( new Plug( 'plug', pInt( arr[ 1 ] ), pInt( arr[ 2 ] ) , arr[ 3 ] ) );
 			},
 			c: ( arr ) => { //cache
-				//game.actors.push( new GroundCache( ...arr.slice( 1 ) ) );
-				game.actors.push( new GroundCache( arr[ 1 ], arr[ 2 ], arr[ 3 ], arr[ 4 ] ) );
+				//game.a.push( new GroundCache( ...arr.slice( 1 ) ) );
+				game.a.push( new GroundCache( arr[ 1 ], arr[ 2 ], arr[ 3 ], arr[ 4 ] ) );
 			},
 			p: ( arr ) => { //pause
 				let s = new GameControl( pInt( arr[ 1 ] ) );
-				s.pause_seconds = pInt( arr[ 2 ] );
-				game.actors.push( s );
+				s.pscds = pInt( arr[ 2 ] );
+				game.a.push( s );
 			},
 			s: ( arr ) => { //spawn
 				// [ "s", 32, "c", "a", 1, "12" ]
@@ -3228,26 +3246,26 @@ game = {
 				s.type = arr[ 3 ];
 				s.level = arr[ 4 ];
 				s.amt = arr[ 5 ];
-				game.actors.push( s );
+				game.a.push( s );
 			},
 			g: ( arr ) => { //ground
-				game.actors.push( new GroundTank( 'ground' + arr[ 3 ], arr[ 1 ], arr[ 2 ] ) );
+				game.a.push( new GroundTank( 'ground' + arr[ 3 ], arr[ 1 ], arr[ 2 ] ) );
 			},
 			t: ( arr ) => { //text particle, permanent
-				game.actors.push( new TextParticle( arr[ 3 ], arr[ 1 ] * 25, arr[ 2 ] * 32, true ) );
+				game.a.push( new TextParticle( arr[ 3 ], arr[ 1 ] * 25, arr[ 2 ] * 32, true ) );
 			},
 			bl: ( arr ) => { //begin level
 				let s = new GameControl( pInt( arr[ 1 ] ) );
-				s.begin_level = arr[ 2 ];
+				s.blvl = arr[ 2 ];
 				s.amt = 0;
 				s.y = pInt( arr[ 1 ] );
 				s.x = 0;
-				game.actors.push( s );
+				game.a.push( s );
 			},
 			sl: ( arr ) => { //end level
 				let s = new GameControl( pInt( arr[ 1 ] ) );
-				s.end_level = arr[ 2 ];
-				game.actors.push( s );
+				s.elvl = arr[ 2 ];
+				game.a.push( s );
 			}
 		};
 
@@ -3258,7 +3276,7 @@ game = {
 	setEvents(){
 		document.addEventListener( 'keydown', ( ev ) => {
 			let k = ev.key.toLowerCase();
-			if( game.ncontrol ) {
+			if( game.nc ) {
 				return;
 			}
 			if( game.keys[ k ] ) {
@@ -3281,19 +3299,19 @@ game = {
 				return;
 			}
 			if( k === 'arrowleft' ) {
-				game.player.setState( 'left' );
+				game.pl.setState( 'left' );
 			}
 			if( k === 'arrowright' ) {
-				game.player.setState( 'right' );
+				game.pl.setState( 'right' );
 			}
-			if( k === 'z' ) {
-				game.player.lazer();
+			if( 'zwyq'.search( k ) > -1 ) {
+				game.pl.lazer();
 			}
-			if( k === 'x' ) {
-				game.player.bomb();
+			if( 'xj'.search( k ) > -1 ) {
+				game.pl.bomb();
 			}
-			if( k === 'c' ) {
-				game.player.harpoon();
+			if( 'ck'.search( k ) > -1 ) {
+				game.pl.harpoon();
 			}
 		} );
 
