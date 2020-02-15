@@ -605,20 +605,6 @@ else {
 	};
 
 	display.loadSounds = function() {
-		// let loadSound = ( name ) => {
-		// 	let a = document.getElementById( name );
-		// 	a.load();
-		// 	a.addEventListener( 'canplaythrough', () => {
-		// 		let cha = [ a ];
-		// 		for( let i = 0; i < 3; i++ ) {
-		// 			cha.push( a.cloneNode( true ) );
-		// 		}
-		// 		display.sounds[ name ] = {
-		// 			cc: 0,
-		// 			cha
-		// 		};
-		// 	} );
-		// };
 		let loadSound = ( name, args ) => {
 			let url = window.jsfxr( args );
 			let cha = [];
@@ -663,26 +649,24 @@ else {
 	};
 
 	display.setError = function() {
-		//console.error( txt );
 		display.error = true;
 	};
 
 	display.setLoop = function( cb ) {
 		let then = 0;
 		let _loop = ( now ) => {
-			now *= 0.001;
-			display.delta_t = now - then;
-			then = now;
+			display.delta_t = 0.013;
 			display.frame++;
 			if ( display.frame > 720 ) {
 				display.frame = 0;
 			}
 			cb();
-			if ( !display.error ) {
-				window.requestAnimationFrame( _loop );
-			}
 		};
-		window.requestAnimationFrame( _loop );
+		setInterval((t) => {
+			if ( !display.error ) {
+				_loop(t);
+			}
+		}, 13);
 	};
 
 	display.getCtx = function() {
@@ -750,7 +734,6 @@ else {
 			a.name = k;
 			return a;
 		} else {
-			//console.error( 'No animation named: ', k );
 			display.setError();
 			return null;
 		}
@@ -826,7 +809,6 @@ else {
 			return;
 		}
 		if ( display.loading ) {
-			//console.log( 'Display is already loading...' );
 			return;
 		}
 
