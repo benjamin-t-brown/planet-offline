@@ -20,7 +20,7 @@
   "homepage": "https://github.com/benjamin-t-brown/planet-offline#readme",
   "dependencies": {
     "concat": "^1.0.3",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.3",
     "uglify-es": "^3.3.9"
   }
 }
